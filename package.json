@@ -14,6 +14,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "animate.css": "^3.7.0",
+    "vant": "^1.1.14",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -74,7 +76,9 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.0.3"
   },
   "engines": {
     "node": ">= 6.0.0",

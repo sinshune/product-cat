@@ -1,0 +1,48 @@
+.header-mobile {
+  position: relative;
+  .logo {
+    margin: 0 15px;
+    .iconcaidan1, .iconguanbi {
+      float: right;
+      height: 36px;
+      line-height: 36px;
+      color: #f58220;
+    }
+  }
+
+  .nav-wrapper {
+    position: absolute;
+    width: 100%;
+    background: #f2f2f2;
+    .word {
+      font-size: .75rem;
+      text-align: center;
+      color: #888888;
+      &::after {
+        content: '';
+        border-top: 1px solid #888;
+        vertical-align: middle;
+        margin: 0 4px;
+        display: block;
+        width: auto;
+        margin: 15px 15px 0;
+        border-top-color: #e1e1e1;
+      }
+    }
+  }
+}
+
+.menu-container {
+  .van-tabs {
+    border: 10px solid #f2f2f2;
+    border-left: 0;
+    border-right: 0;
+  }
+  .van-tabs__line {
+    background: #f58220;
+  }
+  .van-tab--active span {
+    color: #f58220;
+  }
+}
+

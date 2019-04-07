@@ -2,10 +2,19 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import Vant from 'vant'
+import 'vant/lib/vant-css/index.css'
+import 'animate.css'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false
+import '@/utils/rem.js'
+import '@/utils/utils.js'
+
+// import {VTable,VPagination} from 'vue-easytable'
+// Vue.component(VTable.name, VTable)
+// Vue.component(VPagination.name, VPagination)
+Vue.use(Vant)
 
 /* eslint-disable no-new */
 new Vue({
