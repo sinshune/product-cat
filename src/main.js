@@ -5,6 +5,7 @@ import App from './App'
 import Vant from 'vant'
 import 'vant/lib/vant-css/index.css'
 import 'animate.css'
+import 'swiper/dist/css/swiper.min.css'
 import router from './router'
 import store from './store'
 

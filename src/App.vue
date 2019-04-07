@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header></Header>
-    <router-view/>
+    <div class="container" :style="{width: $store.getters.mobile ? '' : '1170px'}">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -18,4 +20,9 @@ export default {
 
 <style>
 @import './assets/scss/common.scss';
+
+.container {
+  padding: 15px;
+  margin: 0 auto;
+}
 </style>

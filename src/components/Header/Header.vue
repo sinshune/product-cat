@@ -5,7 +5,7 @@
 <template>
   <div class="header">
     <!-- pc端 -->
-    <div class="header-pc" v-if="!isMobile">
+    <div class="header-pc" v-if="!$store.getters.mobile">
       <!-- logo -->
       <div class="logo">
         <img src="./../../assets/imgs/logo.png" width="160" height="57">
@@ -24,7 +24,7 @@
     </div>
 
     <!-- 移动端 -->
-    <div class="header-mobile" v-if="isMobile">
+    <div class="header-mobile" v-if="$store.getters.mobile">
       <!-- logo -->
       <div class="logo">
         <img src="./../../assets/imgs/logo.png" width="102" height="36">
@@ -53,14 +53,13 @@
 </template>
 
 <script>
-import {isMobile} from '../../utils/utils'
+import 'vuex'
 
 export default {
   name: 'Header',
 
   data () {
     return {
-      isMobile: false,
       menuContainer: [
         {label: '首页', href: '/index'},
         {label: '文章', href: '/article'},
@@ -79,10 +78,6 @@ export default {
     toggleMenu () {
       this.isMenuShow = !this.isMenuShow
     }
-  },
-
-  mounted () {
-    this.isMobile = isMobile()
   }
 }
 </script>

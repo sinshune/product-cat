@@ -1,8 +1,8 @@
+import { isMobile } from '@/utils/utils.js'
+
 const app = {
   state: {
-    // PlaySortMore: false,
-    // BetFilterDataFlag: true,
-    // headerTitle: ''
+    mobile: isMobile()
   },
   mutations: {
     showPlaySortMore: (state, data) => {

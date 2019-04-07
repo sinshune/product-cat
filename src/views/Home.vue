@@ -4,13 +4,19 @@
 -->
 <template>
   <div class="home">
-    this is home page.
+    <Carousel></Carousel>
   </div>
 </template>
 
 <script>
+import Carousel from '@/components/Carousel/Carousel'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  components: {
+    Carousel
+  }
 }
 </script>
 
