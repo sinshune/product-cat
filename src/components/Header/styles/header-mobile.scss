@@ -13,6 +13,7 @@
 
   .nav-wrapper {
     position: absolute;
+    padding-bottom: 1rem;
     width: 100%;
     background: #f2f2f2;
     .word {
@@ -42,7 +43,11 @@
   .van-tabs__line {
     background: #f58220;
   }
-  .van-tab--active span {
+  .van-tab--active a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    font-weight: 700;
     color: #f58220;
   }
 }

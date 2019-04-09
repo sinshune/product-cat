@@ -4,16 +4,19 @@
     <div class="container" :style="{width: $store.getters.mobile ? '' : '1170px'}">
       <router-view/>
     </div>
+    <Footer v-if="$store.getters.mobile"></Footer>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header/Header.vue'
+import Footer from '@/components/Footer/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Footer
   }
 }
 </script>

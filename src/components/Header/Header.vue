@@ -28,14 +28,18 @@
       <!-- logo -->
       <div class="logo">
         <img src="./../../assets/imgs/logo.png" width="102" height="36">
-        <i class="icon iconfont" :class="[isMenuShow ? 'iconguanbi' : 'iconcaidan1']" @click="toggleMenu()"></i>
+        <i class="icon iconfont" :class="[isMenuShow ? 'iconguanbi' : 'iconcaidan1']" style="font-weight: 700;" @click="toggleMenu()"></i>
       </div>
-      <transition enter-active-class="animated fadeInDownBig" leave-active-class="animated fadeOutUpBig">
+      <transition enter-active-class="animated slideInDown" leave-active-class="animated fadeOutUpBig">
         <div class="nav-wrapper" v-if="isMenuShow">
           <!-- 导航栏 -->
           <div class="menu-container">
             <van-tabs>
-              <van-tab v-for="menu of menuContainer" :key="menu.href" :title="menu.label"></van-tab>
+              <van-tab v-for="menu of menuContainer" :key="menu.href" :title="menu.label">
+                <div slot="title">
+                  <router-link :to="menu.href">{{menu.label}}</router-link>
+                </div>
+              </van-tab>
             </van-tabs>
           </div>
           <!-- word -->
@@ -83,7 +87,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @import url('./styles/header-pc.scss');
   @import "styles/header-pc";
   @import "styles/header-mobile";
 

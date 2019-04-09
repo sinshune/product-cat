@@ -1,3 +1,5 @@
 export function isMobile () {
-  return navigator.userAgent.indexOf('Mobile') !== -1
+  // fixmin
+  // return navigator.userAgent.indexOf('Mobile') !== -1
+  return window.innerWidth <= 768
 }

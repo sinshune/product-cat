@@ -1,6 +1,6 @@
 <!--
     content: 首页轮播图
-    author: Sinshunee.
+    author: Sinshune.
 -->
 <template>
   <div class="swiper-container" :style="[{width: mobile ? '100%' : '50%'}]">
