@@ -4,7 +4,11 @@
 -->
 <template>
   <div class="home">
-    <Carousel></Carousel>
+    <van-row gutter="10">
+      <van-col>
+        <Carousel></Carousel>
+      </van-col>
+    </van-row>
   </div>
 </template>
 
@@ -20,6 +24,17 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-
+<style lang="scss" scoped>
+.home {
+  .van-col {
+    overflow: hidden;
+  }
+  .van-col img {
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
 </style>

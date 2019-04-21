@@ -3,15 +3,15 @@
     author: Sinshune.
 -->
 <template>
-  <div class="swiper-container" :style="[{width: mobile ? '100%' : '50%'}]">
+  <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="img of imgList" :key="img.src">
-        <img :src="img.src" width="100%">
+        <a :href="img.href" target="_blank"><img :src="img.src"></a>
       </div>
     </div>
     <!-- 如果需要导航按钮 -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <!--<div class="swiper-button-prev"></div>-->
+    <!--<div class="swiper-button-next"></div>-->
   </div>
 </template>
 
@@ -26,9 +26,10 @@ export default {
     return {
       swiper: null,
       imgList: [
-        { src: require('@/assets/imgs/Carousel/timg.jpg') },
-        { src: require('@/assets/imgs/Carousel/1.jpg') },
-        { src: require('@/assets/imgs/Carousel/2.jpg') }
+        { src: 'http://i.chanpin100.com/155426722604888208-860x220', href: 'http://www.baidu.com' },
+        { src: 'http://i.chanpin100.com/155426715535138224-860x220', href: 'http://www.baidu.com' },
+        { src: 'http://i.chanpin100.com/155540280177039624-860x220', href: 'http://www.baidu.com' },
+        { src: 'http://i.chanpin100.com/155426706264302441-860x220', href: 'http://www.baidu.com' }
       ]
     }
   },
@@ -36,9 +37,10 @@ export default {
   mounted () {
     this.swiper = new Swiper('.swiper-container', {
       loop: true,
+      autoplay: 2500
       // 如果需要前进后退按钮
-      nextButton: '.swiper-button-next',
-      prevButton: '.swiper-button-prev'
+      // nextButton: '.swiper-button-next',
+      // prevButton: '.swiper-button-prev'
     })
   },
 
