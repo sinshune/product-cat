@@ -7,7 +7,7 @@
     <ul>
       <li v-for="footer of footerList" :key="footer.href">
         <router-link :to="footer.href">
-          <i class="icon iconfont" :class="footer.icon"></i><br>{{footer.label}}
+          <i class="icon iconfont" :class="footer.icon"></i><span style="display: block; height: 0"></span>{{footer.label}}
         </router-link>
       </li>
     </ul>
@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       footerList: [
-        { label: '首页', href: '/index', icon: 'iconshouye' },
+        { label: '首页', href: '/home', icon: 'iconshouye' },
         { label: '文章', href: '/article', icon: 'iconwenzhang' },
         { label: '收藏', href: '/collect', icon: 'iconshoucang' },
         { label: '我的', href: '/person-center', icon: 'iconwode1' }
@@ -45,9 +45,9 @@ export default {
     li {
       flex: 1;
       a {
-        line-height: 1.25rem
+        font-size: 15px;
         i {
-          font-size: 1.2rem;
+          font-size: 15px;
         }
         &.router-link-active {
           color: #f58220;

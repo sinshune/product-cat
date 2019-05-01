@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header></Header>
-    <div class="container" :style="{width: $store.getters.mobile ? '' : '1170px'}">
+    <div class="container" :style="{width: $store.getters.mobile ? '' : '1200px'}">
       <router-view/>
     </div>
     <Footer v-if="$store.getters.mobile"></Footer>

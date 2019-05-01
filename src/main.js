@@ -8,14 +8,13 @@ import 'animate.css'
 import 'swiper/dist/css/swiper.min.css'
 import router from './router'
 import store from './store'
+import axios from 'axios'
 
 import '@/utils/rem.js'
 import '@/utils/utils.js'
 
-// import {VTable,VPagination} from 'vue-easytable'
-// Vue.component(VTable.name, VTable)
-// Vue.component(VPagination.name, VPagination)
 Vue.use(Vant)
+Vue.prototype.http = axios
 
 /* eslint-disable no-new */
 new Vue({

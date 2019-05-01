@@ -65,7 +65,7 @@ export default {
   data () {
     return {
       menuContainer: [
-        {label: '首页', href: '/index'},
+        {label: '首页', href: '/home'},
         {label: '文章', href: '/article'},
         {label: '网址导航', href: '/navigator'},
         {label: '课程推荐', href: '/recommend'},

@@ -4,9 +4,9 @@
 -->
 <template>
   <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="img of imgList" :key="img.src">
-        <a :href="img.href" target="_blank"><img :src="img.src"></a>
+    <div class="swiper-wrapper" style="width: 100%;">
+      <div class="swiper-slide" style="width: 100%;" v-for="img of imgList" :key="img.src">
+        <a :href="img.href" target="_blank"><img :src="img.src" width="100%"></a>
       </div>
     </div>
     <!-- 如果需要导航按钮 -->
@@ -24,13 +24,16 @@ export default {
 
   data () {
     return {
-      swiper: null,
-      imgList: [
-        { src: 'http://i.chanpin100.com/155426722604888208-860x220', href: 'http://www.baidu.com' },
-        { src: 'http://i.chanpin100.com/155426715535138224-860x220', href: 'http://www.baidu.com' },
-        { src: 'http://i.chanpin100.com/155540280177039624-860x220', href: 'http://www.baidu.com' },
-        { src: 'http://i.chanpin100.com/155426706264302441-860x220', href: 'http://www.baidu.com' }
-      ]
+      swiper: null
+    }
+  },
+  props: {
+    imgList: {
+      type: Array,
+      required: true,
+      default () {
+        return []
+      }
     }
   },
 
