@@ -4,7 +4,7 @@
 -->
 
 <template>
-  <div class="author-item">
+  <div class="author-item" :class="{mobile: mobile}">
     <span class="author-avatar">
       <img :src="author.avatar">
     </span>
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'AuthorItem',
 
@@ -29,6 +31,12 @@ export default {
       type: Object,
       required: true
     }
+  },
+
+  computed: {
+    ...mapGetters([
+      'mobile'
+    ])
   }
 }
 </script>
@@ -84,6 +92,10 @@ export default {
         -webkit-line-clamp: 2;
         overflow: hidden;
       }
+    }
+
+    &.mobile {
+      padding: 5px;
     }
   }
 </style>

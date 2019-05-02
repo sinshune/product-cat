@@ -5,7 +5,7 @@
 <template>
   <div class="article-item">
     <router-link :to="article.href">
-      <img :src="article.img" width="223">
+      <img :src="article.img"  :style="{width: mobile ? '170px': '223px'}">
     </router-link>
 
     <div class="article-right">
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'ArticleItem',
   props: {
@@ -55,6 +57,9 @@ export default {
         }
       }
     }
+  },
+  computed: {
+    ...mapGetters(['mobile'])
   }
 }
 </script>

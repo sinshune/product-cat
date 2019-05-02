@@ -7,7 +7,7 @@
     <div class="main-content">
       <Carousel :imgList="imgList" :style="{width: mobile ? '100%': '860px'}"></Carousel>
 
-      <div class="article-list-container" v-if="!mobile">
+      <div class="article-list-container" :style="{width: mobile ? innerWidth : '860px'}">
         <van-tabs>
           <van-tab v-for="(tab, index) of articleTabs" :key="index" :title="tab.title">
             <div class="article-item-wrapper" v-for="article of articleList" :key="article.artId">
@@ -24,6 +24,9 @@
 
       <!-- 作者专栏 -->
       <AuthorColumn style="margin-top: 20px" :author-list="auhtorList"/>
+
+      <!-- 友情链接 -->
+      <friendshipLink style="margin-top: 20px" :link-list="linkList"/>
     </div>
   </div>
 </template>
@@ -33,6 +36,7 @@ import Carousel from '@/components/Carousel/Carousel'
 import ArticleItem from '../../components/ArticleItem/ArticleItem'
 import RankList from './RankList/RankList'
 import AuthorColumn from './AuthorColumn/AuthorColumn'
+import FriendshipLink from './FriendshipLink/FriendshipLink'
 import { mapGetters } from 'vuex'
 import { keepDecimal } from './../../utils/utils'
 import moment from 'moment'
@@ -43,10 +47,9 @@ export default {
   data () {
     return {
       imgList: [
-        { src: 'http://i.chanpin100.com/155426722604888208-860x220', href: 'http://www.baidu.com' },
-        { src: 'http://i.chanpin100.com/155426715535138224-860x220', href: 'http://www.baidu.com' },
-        { src: 'http://i.chanpin100.com/155540280177039624-860x220', href: 'http://www.baidu.com' },
-        { src: 'http://i.chanpin100.com/155426706264302441-860x220', href: 'http://www.baidu.com' }
+        { src: require('@/assets/imgs/Carousel/155426706264302441-860x220.jpg'), href: 'http://www.baidu.com' },
+        { src: require('@/assets/imgs/Carousel/155426715535138224-860x220.jpg'), href: 'http://www.baidu.com' },
+        { src: require('@/assets/imgs/Carousel/155426722604888208-860x220.jpg'), href: 'http://www.baidu.com' }
       ],
       articleTabs: [
         {title: '今日阅读', category: 'todayRead'},
@@ -58,7 +61,9 @@ export default {
       ],
       rankList: [], // 排行榜
       articleList: [], // 文章列表
-      auhtorList: [] // 作者专栏
+      auhtorList: [], // 作者专栏
+      linkList: [], // 友情链接
+      innerWidth: null
     }
   },
 
@@ -96,22 +101,28 @@ export default {
           this.auhtorList = data.data.resultObject
         }
       )
+    },
+
+    //  友情链接列表
+    getLinkLIst () {
+      this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/link-list').then(
+        data => {
+          this.linkList = data.data.resultObject
+        }
+      )
     }
   },
 
   computed: {
-    ...mapGetters(['mobile']),
-
-    readVolMark: (readVol) => {
-      return parseFloat(readVol / 10000, 1) + '万'
-    }
+    ...mapGetters(['mobile'])
   },
 
   components: {
     Carousel,
     ArticleItem,
     RankList,
-    AuthorColumn
+    AuthorColumn,
+    FriendshipLink
   },
 
   mounted () {
@@ -120,6 +131,10 @@ export default {
     this.getArticleList('todayRead')
 
     this.getAuthorList()
+
+    this.getLinkLIst()
+
+    this.innerWidth = window.innerWidth - 30 + 'px'
   }
 }
 </script>
