@@ -16,7 +16,7 @@
           <span class="author-img" v-if="article.avatar">
             <img :src="article.avatar">
           </span>
-          {{article.author}}
+          {{article.username}}
         </span>
         <span class="release-date">{{article.releaseDate}}</span>
         <span>

@@ -19,26 +19,20 @@
     </div>
 
     <div class="aside-hidden" v-if="!mobile">
-      <Card>
-        <div slot="cardTitle">排行榜</div>
-        <ul slot="cardContent" class="article">
-          <!--transition: all .3s cubic-bezier(.25,.1,.25,1);-->
-          <li v-for="(art, index) in rankList" :key="art.artId" style="margin-bottom: 15px">
-            <OrderIcon :index="index+1" style="margin-right: 10px;"/>
-            <a :href="art.href">{{art.title}}</a>
-            <span class="art-readVol">{{art.readVol}}</span>
-          </li>
-        </ul>
-      </Card>
+      <!-- 排行榜 -->
+      <RankList :rank-list="rankList"/>
+
+      <!-- 作者专栏 -->
+      <AuthorColumn style="margin-top: 20px" :author-list="auhtorList"/>
     </div>
   </div>
 </template>
 
 <script>
 import Carousel from '@/components/Carousel/Carousel'
-import Card from '@/components/Card/Card'
-import OrderIcon from '@/components/OrderIcon/OrderIcon'
-import ArticleItem from './ArticleItem/ArticleItem'
+import ArticleItem from '../../components/ArticleItem/ArticleItem'
+import RankList from './RankList/RankList'
+import AuthorColumn from './AuthorColumn/AuthorColumn'
 import { mapGetters } from 'vuex'
 import { keepDecimal } from './../../utils/utils'
 import moment from 'moment'
@@ -54,8 +48,6 @@ export default {
         { src: 'http://i.chanpin100.com/155540280177039624-860x220', href: 'http://www.baidu.com' },
         { src: 'http://i.chanpin100.com/155426706264302441-860x220', href: 'http://www.baidu.com' }
       ],
-      rankList: [], // 排行榜
-      articleList: [], // 文章列表
       articleTabs: [
         {title: '今日阅读', category: 'todayRead'},
         {title: 'Axure学习', category: 'axureStudy'},
@@ -63,11 +55,28 @@ export default {
         {title: '产品设计', category: 'productDesign'},
         {title: '交互设计', category: 'interactiveDesign'},
         { title: '职业经验', category: 'occupationExperience' }
-      ]
+      ],
+      rankList: [], // 排行榜
+      articleList: [], // 文章列表
+      auhtorList: [] // 作者专栏
     }
   },
 
   methods: {
+    // 获取排行榜信息
+    getRankList () {
+      this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/rank-list').then(
+        (data) => {
+          let rst = data.data
+          this.rankList = rst.resultObject.map(art => {
+            art.readVol = keepDecimal(art.readVol, 1) + '万'
+            return art
+          })
+        }
+      ).catch()
+    },
+
+    // 通过"类别"获取文章列表
     getArticleList (category) {
       this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/article-list').then(
         (data) => {
@@ -76,6 +85,15 @@ export default {
             art.releaseDate = moment(art.releaseDate).format('YYYY-MM-DD')
             return art
           })
+        }
+      )
+    },
+
+    // 专栏作者列表
+    getAuthorList () {
+      this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/author-column').then(
+        (data) => {
+          this.auhtorList = data.data.resultObject
         }
       )
     }
@@ -91,23 +109,17 @@ export default {
 
   components: {
     Carousel,
-    Card,
-    OrderIcon,
-    ArticleItem
+    ArticleItem,
+    RankList,
+    AuthorColumn
   },
 
   mounted () {
-    this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/rank-list').then(
-      (data) => {
-        let rst = data.data
-        this.rankList = rst.resultObject.map(art => {
-          art.readVol = keepDecimal(art.readVol, 1) + '万'
-          return art
-        })
-      }
-    ).catch()
+    this.getRankList()
 
     this.getArticleList('todayRead')
+
+    this.getAuthorList()
   }
 }
 </script>
@@ -130,34 +142,6 @@ export default {
   }
   .aside-hidden {
     float: right;
-  }
-  ul.article {
-    li:last-child {
-      margin: 0;
-    }
-    li {
-      a {
-        overflow: hidden;
-        white-space: nowrap;
-        vertical-align: middle;
-        text-overflow: ellipsis;
-        display: inline-block;
-        width: 200px;
-        color: #333;
-        font-size: 14px;
-        &:hover {
-          color: #EC4141;
-        }
-      }
-      span.art-readVol {
-        font-size: 14px;
-        display: inline-block;
-        width: 45px;
-        text-align: right;
-        vertical-align: top;
-        color: #999;
-      }
-    }
   }
 
   .article-list-container {
