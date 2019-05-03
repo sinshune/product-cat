@@ -6,7 +6,7 @@
   <div class="swiper-container">
     <div class="swiper-wrapper" style="width: 100%;">
       <div class="swiper-slide" style="width: 100%;" v-for="img of imgList" :key="img.src">
-        <a :href="img.href" target="_blank"><img :src="img.src" :style="{width : mobile ? innerWidth : '860px'}"></a>
+        <a :href="img.href" target="_blank"><img :src="img.src" :style="{width : mobile ? '100%' : '860px'}"></a>
       </div>
     </div>
     <!-- 如果需要导航按钮 -->
@@ -25,7 +25,7 @@ export default {
   data () {
     return {
       swiper: null,
-      innerWidth: null
+      clientWidth: null
     }
   },
   props: {
@@ -47,7 +47,7 @@ export default {
       // prevButton: '.swiper-button-prev'
     })
 
-    this.innerWidth = window.innerWidth - 30 + 'px'
+    this.clientWidth = document.body.clientWidth - 30 + 'px'
   },
 
   computed: {

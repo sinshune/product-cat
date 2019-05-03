@@ -4,7 +4,7 @@
 -->
 <template>
   <div class="article-item">
-    <router-link :to="article.href">
+    <router-link :to="article.href" v-if="!mobile">
       <img :src="article.img"  :style="{width: mobile ? '170px': '223px'}">
     </router-link>
 

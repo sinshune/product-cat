@@ -4,10 +4,10 @@
 -->
 <template>
   <div class="home">
-    <div class="main-content">
-      <Carousel :imgList="imgList" :style="{width: mobile ? '100%': '860px'}"></Carousel>
+    <div class="main-content" :style="{width: mobile ? '100%': '860px'}">
+      <Carousel :imgList="imgList"></Carousel>
 
-      <div class="article-list-container" :style="{width: mobile ? innerWidth : '860px'}">
+      <div class="article-list-container" :style="{width: mobile ? clientWidth : '860px'}">
         <van-tabs>
           <van-tab v-for="(tab, index) of articleTabs" :key="index" :title="tab.title">
             <div class="article-item-wrapper" v-for="article of articleList" :key="article.artId">
@@ -63,7 +63,7 @@ export default {
       articleList: [], // 文章列表
       auhtorList: [], // 作者专栏
       linkList: [], // 友情链接
-      innerWidth: null
+      clientWidth: null
     }
   },
 
@@ -134,13 +134,15 @@ export default {
 
     this.getLinkLIst()
 
-    this.innerWidth = window.innerWidth - 30 + 'px'
+    console.log(window.clientWidth)
+    this.clientWidth = document.body.clientWidth - 30 + 'px'
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .home {
+  width: 100%;
   .van-col {
     overflow: hidden;
     & img {

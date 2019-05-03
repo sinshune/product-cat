@@ -9,7 +9,9 @@ html, body, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ul, li {
 html, body {
   background: #f7f7f7;
 }
-
+html, body, #app {
+  height: 100%;
+}
 ul, li {
   list-style: none;
 }
