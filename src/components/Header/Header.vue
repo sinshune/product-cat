@@ -19,7 +19,7 @@
       <!-- 登录/注册 -->
       <ul class="user-corner">
         <li><router-link to="/login-reg">登录 | 注册</router-link></li>
-        <li><a href="" class="publish">投稿</a></li>
+        <li><router-link to="/publish-article" class="publish">投稿</router-link></li>
       </ul>
     </div>
 

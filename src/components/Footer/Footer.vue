@@ -54,12 +54,12 @@ export default {
 
 <style lang="stylus" scoped>
 .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   .footer-mobile {
-    position: fixed;
-    bottom: 0;
     z-index: 500;
     padding: 10px 0 0 0;
-    width: 100%;
     border-top: .0625rem solid #ccc;
     ul {
       display: flex;
@@ -81,9 +81,6 @@ export default {
   }
 
   .footer-pc {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     padding: 20px;
     clear: both;
     background: #24273D;

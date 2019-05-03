@@ -1,3 +1,7 @@
+export function isEmpty (val) {
+  return val === null || val === undefined || val === ''
+}
+
 export function isMobile () {
   // fixmin
   return navigator.userAgent.indexOf('Mobile') !== -1

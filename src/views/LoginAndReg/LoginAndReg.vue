@@ -120,7 +120,7 @@ export default {
     },
 
     onReg (formName) {
-      this.$refs[formName].validator(valid => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
           alert('调注册接口')
         } else {
