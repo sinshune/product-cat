@@ -15,19 +15,19 @@ export default new Router({
       redirect: '/lotteryHall/index'
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: _import('login/Login')
+      path: '/LoginAndReg',
+      name: 'LoginAndReg',
+      component: _import('LoginAndReg/LoginAndReg')
     },
     {
       path: '/register',
       name: 'register',
-      component: _import('login/register')
+      component: _import('LoginAndReg/register')
     },
     {
       path: '/forgetPwd',
       name: 'forgetPwd',
-      component: _import('login/forgetPwd')
+      component: _import('LoginAndReg/forgetPwd')
     },
     {
       path: '/allLottery',

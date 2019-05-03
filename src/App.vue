@@ -27,5 +27,6 @@ export default {
 .container {
   padding: 15px;
   margin: 0 auto;
+  margin-bottom: 143px;
 }
 </style>

@@ -21,7 +21,7 @@
         </div>
         <div class="join-us">
           <span>关于我们</span>
-          <span>联系我们<a href="http://wpa.qq.com/msgrd?v=3&uin=2650232288&site=qq&menu=yes"><img src="../../assets/imgs/qq.svg" width="16"></a></span>
+          <span>联系我们<a href="http://wpa.qq.com/msgrd?v=3&uin=2650232288&site=qq&menu=yes" target="_blank"><img src="../../assets/imgs/ContactUs/qq.svg" width="16"></a></span>
           <span>加入我们</span>
           <span>广告合作</span>
           <span>网址导航</span>
@@ -81,6 +81,9 @@ export default {
   }
 
   .footer-pc {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     padding: 20px;
     clear: both;
     background: #24273D;

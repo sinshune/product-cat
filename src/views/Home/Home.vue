@@ -143,6 +143,7 @@ export default {
 <style lang="scss" scoped>
 .home {
   width: 100%;
+  overflow: hidden;
   .van-col {
     overflow: hidden;
     & img {

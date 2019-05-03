@@ -18,7 +18,7 @@
       </ul>
       <!-- 登录/注册 -->
       <ul class="user-corner">
-        <li><a href="">登录</a> <a style="color: #cccccc;">|</a> <a href="">注册</a></li>
+        <li><router-link to="/login-reg">登录 | 注册</router-link></li>
         <li><a href="" class="publish">投稿</a></li>
       </ul>
     </div>
@@ -93,5 +93,6 @@ export default {
   .header {
     width: 100%;
     background: #ffffff;
+    box-shadow: 3px 1px 3px #d5d5d5;
   }
 </style>

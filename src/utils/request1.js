@@ -33,7 +33,7 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   response => {
     // if (response.data.code == '401') {
-    //   router.push('/login')
+    //   router.push('/LoginAndReg')
     // }
     return response
   },
@@ -46,12 +46,12 @@ service.interceptors.response.use(
           // removeMenus();
           removeToken()
           router.replace({
-            path: '/login'
+            path: '/LoginAndReg'
             // query: {redirect: router.currentRoute.fullPath}
           })
         // if (router.currentRoute.fullPath !== '/aboutus' && router.currentRoute.fullPath !== '/faq' && router.currentRoute.fullPath !== '/Permissions') {
         //   router.replace({
-        //     path: 'login',
+        //     path: 'LoginAndReg',
         //     // query: {redirect: router.currentRoute.fullPath}
         //   })
         // }

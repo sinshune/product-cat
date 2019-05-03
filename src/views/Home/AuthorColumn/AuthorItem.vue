@@ -15,7 +15,6 @@
       </div>
       <div class="author-company" author.company>{{author.company}} {{author.position}}</div>
       <div class="author-intro" v-if="author.intro" :title="author.intro">{{author.intro}}</div>
-      <div class="author-wechat" v-if="author.wechat">个人微信: {{author.wechat}}</div>
     </div>
   </div>
 </template>
