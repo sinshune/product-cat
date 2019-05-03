@@ -5,12 +5,12 @@
 <template>
   <div class="article-item">
     <router-link :to="article.href" v-if="!mobile">
-      <img :src="article.img"  :style="{width: mobile ? '170px': '223px'}">
+      <img :src="article.img"  style="width: 170px;">
     </router-link>
 
     <div class="article-right">
       <h3 class="article-head">{{article.title}}</h3>
-      <h5 class="article-survey">{{article.survey}}</h5>
+      <h5 class="article-survey" v-if="!mobile">{{article.survey}}</h5>
       <div class="article-info">
         <span class="author">
           <span class="author-img" v-if="article.avatar">
@@ -18,7 +18,7 @@
           </span>
           {{article.username}}
         </span>
-        <span class="release-date">{{article.releaseDate}}</span>
+        <span class="release-date" v-if="!mobile">{{article.releaseDate}}</span>
         <span>
           <i class="icon iconfont iconchakan2"></i>{{article.readVol}}
         </span>
@@ -70,6 +70,7 @@ export default {
 
   a {
     overflow: hidden;
+    margin-right: 20px;
     img {
       &:hover {
         transform: scale(1.2);
@@ -80,8 +81,6 @@ export default {
 
   .article-right {
     flex: 1;
-    position: relative;
-    margin-left: 20px;
     color: #333;
 
     .article-head {
@@ -103,15 +102,13 @@ export default {
       overflow: hidden;
     }
     .article-info {
-      position: absolute;
-      bottom: 0;
       height: 30px;
       line-height: 30px;
       font-size: 14px;
       color: #cccccc;
       &>span {
         display: inline-block;
-        margin-right: 20px;
+        margin-right: 8px;
         i {
           margin-top: 1px;
         }
