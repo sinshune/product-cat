@@ -5,6 +5,7 @@ import LoginAndReg from '@/views/LoginAndReg/LoginAndReg'
 // import ForgetPwd from '@/views/LoginAndReg/ForgetPwd/ForgetPwd'
 // import Appeal from '@/views/LoginAndReg/Appeal/Appeal'
 import PublishArticle from '@/views/PublishArticle/PublishArticle'
+import WebsiteNav from '@/views/WebsiteNav/WebsiteNav'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
     //   name: 'Appeal',
     //   component: Appeal
     // },
+    {
+      path: '/website-nav',
+      name: 'WebsiteNav',
+      component: WebsiteNav
+    },
     {
       path: '/publish-article',
       name: 'PublishArticle',

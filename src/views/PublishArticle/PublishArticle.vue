@@ -109,6 +109,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           alert('调提交审核的接口')
+          console.log(this.articleForm)
         } else {
           alert('表单校验没通过')
         }
