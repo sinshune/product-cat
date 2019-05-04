@@ -4,6 +4,8 @@ import Home from '@/views/Home/Home'
 import LoginAndReg from '@/views/LoginAndReg/LoginAndReg'
 // import ForgetPwd from '@/views/LoginAndReg/ForgetPwd/ForgetPwd'
 // import Appeal from '@/views/LoginAndReg/Appeal/Appeal'
+import Article from '@/views/Article/Article'
+import ArticleDetail from '@/views/ArticleDetail/ArticleDetail'
 import PublishArticle from '@/views/PublishArticle/PublishArticle'
 import WebsiteNav from '@/views/WebsiteNav/WebsiteNav'
 
@@ -35,6 +37,16 @@ export default new Router({
     //   name: 'Appeal',
     //   component: Appeal
     // },
+    {
+      path: '/article',
+      name: 'Article',
+      component: Article
+    },
+    {
+      path: '/article/:artId',
+      name: 'ArticleDetail',
+      component: ArticleDetail
+    },
     {
       path: '/website-nav',
       name: 'WebsiteNav',

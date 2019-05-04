@@ -69,7 +69,8 @@ export default {
         {label: '行业动态', value: 'industryDynamics'},
         {label: '产品设计', value: 'productDesign'},
         {label: '交互设计', value: 'interactiveDesign'},
-        {label: '职业经验', value: 'occupationExperience'}
+        {label: '职业经验', value: 'occupationExperience'},
+        {label: '教程', value: 'course'}
       ],
       articleForm: {
         title: '',

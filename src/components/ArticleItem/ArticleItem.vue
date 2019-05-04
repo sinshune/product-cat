@@ -41,21 +41,7 @@ export default {
   props: {
     article: {
       type: Object,
-      default () {
-        return {
-          artId: 108363,
-          title: '阿里巴巴的战略中台是什么？',
-          img: 'http://i.chanpin100.com/155660543194826955-256x160',
-          survey: '最近中台战略比较火，你知道什么是中台么？',
-          avatar: 'http://q.qlogo.cn/qqapp/101035033/586D9851C413A9C0F6EFAA7525B09A6A/100',
-          author: '德艺双馨产品刘',
-          releaseDate: 1556553600000,
-          readVol: 1125,
-          commentVol: 0,
-          likeVol: 0,
-          artContent: '阿里巴巴的战略中台是什么？阿里巴巴的战略中台是什么？'
-        }
-      }
+      required: true
     }
   },
   computed: {

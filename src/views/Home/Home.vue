@@ -34,9 +34,9 @@
 <script>
 import Carousel from '@/components/Carousel/Carousel'
 import ArticleItem from '../../components/ArticleItem/ArticleItem'
-import RankList from './RankList/RankList'
-import AuthorColumn from './AuthorColumn/AuthorColumn'
-import FriendshipLink from './FriendshipLink/FriendshipLink'
+import RankList from '../../components/RankList/RankList'
+import AuthorColumn from '../../components/AuthorColumn/AuthorColumn'
+import FriendshipLink from '../../components/FriendshipLink/FriendshipLink'
 import { mapGetters } from 'vuex'
 import { keepDecimal } from './../../utils/utils'
 import moment from 'moment'
