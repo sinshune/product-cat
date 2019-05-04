@@ -9,7 +9,9 @@
     </router-link>
 
     <div class="article-right">
-      <h3 class="article-head">{{article.title}}</h3>
+      <h3 class="article-head">
+        <router-link :to="{path: `/article/${article.artId}`}">{{article.title}}</router-link>
+      </h3>
       <h5 class="article-survey" v-if="!mobile">{{article.survey}}</h5>
       <div class="article-info">
         <span class="author">

@@ -67,8 +67,8 @@ export default {
       menuContainer: [
         {label: '首页', href: '/home'},
         {label: '文章', href: '/article'},
+        {label: '提问', href: '/question'},
         {label: '网址导航', href: '/website-nav'},
-        {label: '课程推荐', href: '/recommend'},
         {label: '教程', href: '/course'},
         {label: '素材下载', href: '/download'},
         {label: '关于我们', href: '/about-us'}

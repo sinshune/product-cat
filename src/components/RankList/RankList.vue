@@ -11,7 +11,7 @@
         <!--transition: all .3s cubic-bezier(.25,.1,.25,1);-->
         <li v-for="(art, index) in rankList" :key="art.artId" style="margin-bottom: 15px">
           <OrderIcon :index="index+1" style="margin-right: 10px;"/>
-          <a :href="art.href">{{art.title}}</a>
+          <router-link :to="{path: `/article/${art.artId}`}">{{art.title}}</router-link>
           <span class="art-readVol">{{art.readVol}}</span>
         </li>
       </ul>
