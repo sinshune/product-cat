@@ -8,6 +8,7 @@ import Article from '@/views/Article/Article'
 import ArticleDetail from '@/views/ArticleDetail/ArticleDetail'
 import PublishArticle from '@/views/PublishArticle/PublishArticle'
 import WebsiteNav from '@/views/WebsiteNav/WebsiteNav'
+import PersonCenter from '@/views/PersonCenter/PersonCenter'
 
 Vue.use(Router)
 
@@ -56,6 +57,11 @@ export default new Router({
       path: '/publish-article',
       name: 'PublishArticle',
       component: PublishArticle
+    },
+    {
+      path: '/person-center',
+      name: 'PersonCenter',
+      component: PersonCenter
     }
   ]
 })

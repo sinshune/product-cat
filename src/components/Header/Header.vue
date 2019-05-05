@@ -19,6 +19,11 @@
       <!-- 登录/注册 -->
       <ul class="user-corner">
         <li><router-link to="/login-reg">登录 | 注册</router-link></li>
+        <li class="avator">
+          <router-link to="/person-center">
+            <img src="http://q.qlogo.cn/qqapp/101035033/586D9851C413A9C0F6EFAA7525B09A6A/100">
+          </router-link>
+        </li>
         <li><router-link to="/publish-article" class="publish">投稿</router-link></li>
       </ul>
     </div>

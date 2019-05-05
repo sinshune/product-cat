@@ -16,5 +16,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "Comment.scss";
+@import "styles/Comment";
 </style>

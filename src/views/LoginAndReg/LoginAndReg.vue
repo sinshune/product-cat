@@ -10,13 +10,13 @@
         <van-tab title="登录">
           <el-form :model="loginForm" ref="loginForm" :rules="loginRules" label-width="70px">
             <el-form-item label="用户名" prop="username">
-              <el-input v-model="loginForm.username" placeholder="请输入用户名"></el-input>
+              <el-input v-model="loginForm.username" placeholder="请输入用户名" minlength="1" maxlength="11"/>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" minlength="6" maxlength="16"></el-input>
+              <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" minlength="6" maxlength="16"/>
             </el-form-item>
             <el-form-item label="记住密码">
-              <el-switch v-model="loginForm.isRemember"></el-switch>
+              <el-switch v-model="loginForm.isRemember"/>
             </el-form-item>
             <el-row>
               <el-button type="primary" style="width: 100%;" @click="onLogin('loginForm')">登录</el-button>
@@ -27,16 +27,16 @@
         <van-tab title="注册">
           <el-form :model="regForm" ref="regForm" :rules="regRules" label-width="70px">
             <el-form-item label="用户名" prop="username">
-              <el-input v-model="regForm.username" placeholder="请输入用户名"></el-input>
+              <el-input v-model="regForm.username" placeholder="请输入用户名，不超过11位" minlength="1" maxlength="11"/>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input type="password" v-model="regForm.password" placeholder="请输入密码" minlength="6" maxlength="16"></el-input>
+              <el-input type="password" v-model="regForm.password" placeholder="请输入密码" minlength="6" maxlength="16"/>
             </el-form-item>
             <el-form-item label="确认密码" prop="password2">
               <el-input type="password" v-model="regForm.password2" placeholder="请再次输入密码" minlength="6" maxlength="16"></el-input>
             </el-form-item>
             <el-form-item label="手机号" prop="phone">
-              <el-input type="tel" v-model="regForm.phone" placeholder="请输入正确的手机号" minlength="11" maxlength="11"></el-input>
+              <el-input type="tel" v-model="regForm.phone" placeholder="请输入正确的手机号" minlength="11" maxlength="11"/>
             </el-form-item>
             <el-row style="margin-bottom: 8px; text-align: center;">
               <el-checkbox v-model="regForm.isAgree">我已阅读并同意《用户注册协议》</el-checkbox>

@@ -7,7 +7,7 @@
   <div class="publish-article">
     <el-form :model="articleForm" ref="articleForm" :rules="articleRules" label-width="70px">
       <el-form-item label="标题" prop="title">
-        <el-input v-model="articleForm.title" placeholder="请输入标题，标题不超过50字" maxlength="50"></el-input>
+        <el-input v-model="articleForm.title" placeholder="请输入标题，标题不超过50字" maxlength="50"/>
       </el-form-item>
       <el-form-item style="margin-bottom: 42px;" prop="note">
         <quill-editor v-model="articleForm.note"
@@ -38,8 +38,7 @@
           :rows="2"
           placeholder="请输入文章摘要，摘要不超过300字"
           v-model="articleForm.summary"
-          maxlength="300">
-        </el-input>
+          maxlength="300"/>
       </el-form-item>
       <el-row style="text-align: right;">
         <el-button type="primary" @click="onSubmit('articleForm')">提交审核</el-button>
