@@ -2,3 +2,47 @@
  * content: 评论组件的样式
  * author: Sunshine.
 */
+
+.comment {
+  .el-card {
+    border: none;
+    .el-card__body {
+      .save-comment {
+        padding: 0 15px;
+        border: 1px solid #ddd;
+        border-top: 0;
+        background-color: #fbfbfb;
+        border-radius: 0 0 2px 2px;
+        vertical-align: middle;
+        overflow: hidden;
+        .user-info {
+          vertical-align: middle;
+          float: left;
+          padding: 12px 0;
+          img {
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #EFEFEF;
+            background: #F7F5F5;
+          }
+          a {
+            line-height: 32px;
+            color: #999999;
+          }
+        }
+        .publish-btn {
+          float: right;
+          margin-top: 12px;
+          padding: 8px 12px;
+        }
+      }
+      .el-textarea {
+        textarea {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}

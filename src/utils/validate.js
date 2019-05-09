@@ -45,7 +45,7 @@ export function checkArticleTitle (rule, value, callback) {
 
 export function checkArticleNot (rule, value, callback) {
   if (isEmpty(value)) {
-    return callback(new Error('正文不能为空'))
+    return callback(new Error('请输入正文内容'))
   } else {
     return callback()
   }

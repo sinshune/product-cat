@@ -49,7 +49,7 @@ export default {
   },
 
   mounted () {
-    this.getArticleList('todayRead')
+    this.getArticleList('industryDynamics')
   },
 
   components: {

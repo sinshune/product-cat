@@ -63,9 +63,8 @@ export default {
   data () {
     return {
       categoryList: [
-        {label: '今日阅读', value: 'todayRead'},
-        {label: 'Axure学习', value: 'axureStudy'},
         {label: '行业动态', value: 'industryDynamics'},
+        {label: 'Axure学习', value: 'axureStudy'},
         {label: '产品设计', value: 'productDesign'},
         {label: '交互设计', value: 'interactiveDesign'},
         {label: '职业经验', value: 'occupationExperience'},
@@ -74,7 +73,7 @@ export default {
       articleForm: {
         title: '',
         note: '',
-        category: 'todayRead',
+        category: 'industryDynamics',
         summary: ''
       },
       articleRules: {

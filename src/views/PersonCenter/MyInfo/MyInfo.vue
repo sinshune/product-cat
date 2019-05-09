@@ -73,7 +73,7 @@ export default {
         intro: ''
       },
       myInfoRules: {
-        checkUsername: [
+        username: [
           { validator: checkUsername, trigger: 'blur' }
         ],
         phone: [
@@ -81,6 +81,10 @@ export default {
         ]
       }
     }
+  },
+
+  methods: {
+    saveModify () {}
   },
 
   mounted () {

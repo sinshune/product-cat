@@ -17,3 +17,17 @@ export function keepDecimal (num, digit) {
     return 'Invalid'
   }
 }
+
+export function getCookie (key) {
+  if (!key || document.cookie.indexOf(key) === -1) return false
+
+  let temp = document.cookie.split(';').map(_ => {
+    let t = _.split('=')
+    let o = {}
+    o[t[0]] = t[1]
+    return o
+  }).find(_ => {
+    return Object.keys(_)[0] === key
+  })
+  return temp[key] ? temp[key] : null
+}

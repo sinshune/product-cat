@@ -17,7 +17,7 @@
     <div class="footer-pc" v-if="!$store.getters.mobile">
       <div class="about-us">
         <div class="intro">
-          产品猫是一个设计师学习平台，初心是专注于设计师的学习成长与交流，为设计师发声、替好作品说话，是平台的运营理念。想更全面了解优设或联系我们合作，欢迎访问<a href="" class="about-us-link">“关于我们”</a>。
+          产品猫是一个设计师学习平台，初心是专注于设计师的学习成长与交流，为设计师发声、替好作品说话，是平台的运营理念。想更全面了解优设或联系我们合作，欢迎访问<router-link to="/about-us" class="about-us-link">“关于我们”</router-link>。
         </div>
         <div class="join-us">
           <span>关于我们</span>

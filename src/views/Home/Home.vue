@@ -33,10 +33,10 @@
 
 <script>
 import Carousel from '@/components/Carousel/Carousel'
-import ArticleItem from '../../components/ArticleItem/ArticleItem'
-import RankList from '../../components/RankList/RankList'
-import AuthorColumn from '../../components/AuthorColumn/AuthorColumn'
-import FriendshipLink from '../../components/FriendshipLink/FriendshipLink'
+import ArticleItem from '@/components/ArticleItem/ArticleItem'
+import RankList from '@/components/RankList/RankList'
+import AuthorColumn from '@/components/AuthorColumn/AuthorColumn'
+import FriendshipLink from '@/components/FriendshipLink/FriendshipLink'
 import { mapGetters } from 'vuex'
 import { keepDecimal } from './../../utils/utils'
 import moment from 'moment'
@@ -52,9 +52,8 @@ export default {
         { src: require('@/assets/imgs/Carousel/155426722604888208-860x220.jpg'), href: 'http://www.baidu.com' }
       ],
       articleTabs: [
-        {title: '今日阅读', category: 'todayRead'},
-        {title: 'Axure学习', category: 'axureStudy'},
         {title: '行业动态', category: 'industryDynamics'},
+        {title: 'Axure学习', category: 'axureStudy'},
         {title: '产品设计', category: 'productDesign'},
         {title: '交互设计', category: 'interactiveDesign'},
         { title: '职业经验', category: 'occupationExperience' }
@@ -113,6 +112,16 @@ export default {
     }
   },
 
+  mounted () {
+    this.getRankList()
+
+    this.getArticleList('industryDynamics')
+
+    this.getAuthorList()
+
+    this.getLinkLIst()
+  },
+
   computed: {
     ...mapGetters(['mobile'])
   },
@@ -123,19 +132,6 @@ export default {
     RankList,
     AuthorColumn,
     FriendshipLink
-  },
-
-  mounted () {
-    this.getRankList()
-
-    this.getArticleList('todayRead')
-
-    this.getAuthorList()
-
-    this.getLinkLIst()
-
-    console.log(window.clientWidth)
-    this.clientWidth = document.body.clientWidth - 30 + 'px'
   }
 }
 </script>
