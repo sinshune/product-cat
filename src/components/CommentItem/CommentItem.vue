@@ -6,8 +6,8 @@
 <template>
   <div class="comment-item">
     <div class="comment-wrapper">
-      <div class="avator">
-        <img :src="comment.userInfo.avator" alt="">
+      <div class="avatar">
+        <img :src="comment.userInfo.avatar" alt="">
       </div>
       <div class="comment-content">
         <h5>{{comment.userInfo.username}}</h5>

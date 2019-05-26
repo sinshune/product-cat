@@ -5,14 +5,14 @@
 <template>
   <div class="article-item">
     <router-link :to="article.href" v-if="!mobile">
-      <img :src="article.img"  style="width: 170px;">
+      <img :src="article.cover"  style="width: 170px;">
     </router-link>
 
     <div class="article-right">
       <h3 class="article-head">
         <router-link :to="{path: article.href}">{{article.title}}</router-link>
       </h3>
-      <h5 class="article-survey" v-if="!mobile">{{article.survey}}</h5>
+      <h5 class="article-summary" v-if="!mobile">{{article.summary}}</h5>
       <div class="article-info">
         <span class="author">
           <span class="author-img" v-if="article.avatar">
@@ -81,7 +81,7 @@ export default {
         color: #F13F3F;
       }
     }
-    .article-survey {
+    .article-summary {
       font-size: 14px;
       line-height: 2em;
       display: -webkit-box;

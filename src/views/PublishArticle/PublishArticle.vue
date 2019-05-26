@@ -68,7 +68,8 @@ export default {
         {label: '产品设计', value: 'productDesign'},
         {label: '交互设计', value: 'interactiveDesign'},
         {label: '职业经验', value: 'occupationExperience'},
-        {label: '教程', value: 'course'}
+        {label: '教程', value: 'course'},
+        {label: '提问', value: 'question'}
       ],
       articleForm: {
         title: '',
@@ -95,6 +96,7 @@ export default {
         '文末请注明完整作者信息，参考格式：文\\Ann',
         '文章配图务必保证清晰无水印，脑图或者细节图，建议导出高清图片。',
         '文章编辑好后请点击发布按钮进行投稿，投稿成功后将进入短暂的审核期，由于后台稿件量巨大，请勿着急，我们承诺24小时内审核完毕。',
+        '如果是提问，发布完的内容请到“提问”模块查看。',
         '已通过审核发布的稿件，如需修改请联系管理员@sunshine.（微信号：j1005098087）。'
       ]
     }

@@ -10,11 +10,11 @@
       <div slot="cardTitle">我的资料</div>
       <div slot="cardContent">
         <el-form :model="myInfoForm" ref="myInfoForm" :rules="myInfoRules" label-width="70px">
-          <el-form-item label="头像" prop="avator" class="avator-label">
+          <el-form-item label="头像" prop="avatar" class="avatar-label">
             <el-upload class="avatar-uploader"
                         action="https://jsonplaceholder.typicode.com/posts/"
                        :show-file-list="false">
-              <img v-if="myInfoForm.avator" :src="myInfoForm.avator" class="avatar">
+              <img v-if="myInfoForm.avatar" :src="myInfoForm.avatar" class="avatar">
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
@@ -63,7 +63,7 @@ export default {
     return {
       myInfoForm: {
         // 昵称不能为空, 其他都可以为空
-        avator: '',
+        avatar: '',
         username: '',
         name: '',
         gender: null,

@@ -4,7 +4,7 @@
 -->
 
 <template>
-  <div class="reply">
+  <div class="sub-comment">
     <el-card class="box-card">
       <p class="reply-content">
         {{subComment.userInfo.username}} 回复 {{subComment.beReplyUserInfo.username}}: {{subComment.commentContent}}
@@ -21,7 +21,7 @@
 import Comment from '@/components/Comment/Comment'
 
 export default {
-  name: 'Reply',
+  name: 'SubComment',
 
   data () {
     return {
@@ -38,10 +38,6 @@ export default {
   methods: {
     onReply (evt) {
       this.$emit('onSubReply', this.$refs.user.dataset.username, this.$refs.user.dataset.userid)
-      // console.log(this.$refs.user.dataset.username)
-      // this.isCommentShow = !this.isCommentShow
-      // // 当前登录用户回复评论用户
-      // this.placeholder = `${this.username} 回复${this.$refs.user.dataset.username}`
     }
   },
 
@@ -56,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss">
-.reply {
+.sub-comment {
   padding: 5px 30px;
 }
 </style>
