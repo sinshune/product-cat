@@ -53,7 +53,7 @@
 
 <script>
 import { checkUsername, checkPassword, checkPhone } from '../../utils/validate'
-
+import http from '@/utils/request'
 export default {
   name: 'LoginAndReg',
 
@@ -107,7 +107,11 @@ export default {
       }
     }
   },
-
+  mounted () {
+    http.post('v3/user/register', {}).then(res => {
+      // console.log(res)
+    })
+  },
   methods: {
     onLogin (formName) {
       this.$refs[formName].validate((valid) => {
@@ -127,9 +131,6 @@ export default {
         }
       })
     }
-  },
-
-  mounted () {
   }
 }
 </script>
