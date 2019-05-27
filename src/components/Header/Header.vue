@@ -20,7 +20,7 @@
       <ul class="user-corner">
         <li><router-link to="/login-reg">登录 | 注册</router-link></li>
         <li class="upload">
-          <router-link to=""><i class="icon iconfont iconshangchuan"></i></router-link>
+          <a href="javascript:;" @click="onUpload()"><i class="icon iconfont iconshangchuan"></i></a>
         </li>
         <li class="avatar">
           <router-link to="/person-center">
@@ -66,6 +66,7 @@
 
 <script>
 import 'vuex'
+import Upload from '@/components/Upload/Upload'
 
 export default {
   name: 'Header',
@@ -82,14 +83,59 @@ export default {
         {label: '关于我们', href: '/about-us'}
       ],
       isMenuShow: false,
-      keyword: ''
+      keyword: '',
+      uploadForm: {
+        title: '',
+        desc: '',
+        cover: '',
+        content: ''
+      }
     }
   },
 
   methods: {
     toggleMenu () {
       this.isMenuShow = !this.isMenuShow
+    },
+
+    onUpload () {
+      const h = this.$createElement
+      this.$msgbox({
+        title: '上传文件',
+        message: h('Upload', {
+          props: {
+            uploadForm: this.uploadForm
+          }
+        }, Upload),
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonText: '保存',
+        cancelButtonText: '取消',
+        beforeClose: (action, instance, done) => {
+          if (action === 'confirm') {
+            instance.confirmButtonLoading = true
+            instance.confirmButtonText = '执行中...'
+            setTimeout(() => {
+              done()
+              setTimeout(() => {
+                instance.confirmButtonLoading = false
+              }, 300)
+            }, 3000)
+          } else {
+            done()
+          }
+        }
+      }).then(action => {
+        this.$message({
+          type: 'info',
+          message: 'action: ' + action
+        })
+      })
     }
+  },
+
+  components: {
+    Upload
   }
 }
 </script>

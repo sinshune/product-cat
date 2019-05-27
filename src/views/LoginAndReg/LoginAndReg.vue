@@ -109,7 +109,7 @@ export default {
   },
   mounted () {
     http.post('v3/user/register', {}).then(res => {
-      // console.log(res)
+      console.log(res)
     })
   },
   methods: {

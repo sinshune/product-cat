@@ -12,6 +12,7 @@ import QuestionDetail from '@/views/QuestionDetail/QuestionDetail'
 import WebsiteNav from '@/views/WebsiteNav/WebsiteNav'
 import Course from '@/views/Course/Course'
 import CourseDetail from '@/views/CourseDetail/CourseDetail'
+import Download from '@/views/Download/Download'
 import PersonCenter from '@/views/PersonCenter/PersonCenter'
 import AboutUs from '@/views/AboutUs/AboutUs'
 
@@ -82,6 +83,11 @@ export default new Router({
       path: '/publish-article',
       name: 'PublishArticle',
       component: PublishArticle
+    },
+    {
+      path: '/download',
+      name: 'Download',
+      component: Download
     },
     {
       path: '/person-center',

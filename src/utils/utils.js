@@ -31,3 +31,10 @@ export function getCookie (key) {
   })
   return temp[key] ? temp[key] : null
 }
+
+export function getFileType (filename) {
+  const seat = filename.lastIndexOf('.')
+  if (seat !== -1) {
+    return filename.substr(seat)
+  }
+}

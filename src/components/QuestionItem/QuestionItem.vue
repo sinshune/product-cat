@@ -68,7 +68,7 @@ export default {
 
 <style lang="scss" scoped>
 .question-item {
-  width: 900px;
+  width: 730px;
   margin: 0 auto;
   padding: 10px 0;
   font-size: 12px;
