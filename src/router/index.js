@@ -7,6 +7,8 @@ import LoginAndReg from '@/views/LoginAndReg/LoginAndReg'
 import Article from '@/views/Article/Article'
 import ArticleDetail from '@/views/ArticleDetail/ArticleDetail'
 import PublishArticle from '@/views/PublishArticle/PublishArticle'
+import Question from '@/views/Question/Question'
+import QuestionDetail from '@/views/QuestionDetail/QuestionDetail'
 import WebsiteNav from '@/views/WebsiteNav/WebsiteNav'
 import Course from '@/views/Course/Course'
 import CourseDetail from '@/views/CourseDetail/CourseDetail'
@@ -50,6 +52,16 @@ export default new Router({
       path: '/article/:artId',
       name: 'ArticleDetail',
       component: ArticleDetail
+    },
+    {
+      path: '/question',
+      name: 'Question',
+      component: Question
+    },
+    {
+      path: '/question/:questionId',
+      name: 'QuestionDetail',
+      component: QuestionDetail
     },
     {
       path: '/website-nav',
