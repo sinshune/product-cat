@@ -7,6 +7,10 @@
   <div class="person-center">
     <el-tabs tab-position="left">
       <el-tab-pane>
+        <span slot="label"><i class="icon iconfont iconwodeziliao"></i> 我的主页</span>
+        <MyHome/>
+      </el-tab-pane>
+      <el-tab-pane>
         <span slot="label"><i class="icon iconfont iconwodeziliao"></i> 我的资料</span>
         <MyInfo/>
       </el-tab-pane>
@@ -19,6 +23,7 @@
 </template>
 
 <script>
+import MyHome from './MyHome/MyHome'
 import MyInfo from './MyInfo/MyInfo'
 import UpdataPwd from './UpdataPwd/UpdataPwd'
 
@@ -26,6 +31,7 @@ export default {
   name: 'PersonCenter',
 
   components: {
+    MyHome,
     MyInfo,
     UpdataPwd
   }

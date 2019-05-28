@@ -12,15 +12,15 @@
           <span>发布于{{course.releaseDate}}</span>
           <span>阅读 {{course.readVol}}</span>
           <span>评论 {{course.commentVol}}</span>
-          <span>喜欢 {{course.likeVol}}</span>
+          <!--<span>喜欢 {{course.likeVol}}</span>-->
         </div>
         <p class="course-survey">{{course.survey}}</p>
         <p class="art-content" v-html="course.artContent"></p>
       </div>
 
-      <el-row style="margin: 20px; text-align: right;">
-        <button class="like-btn"><i class="icon iconfont iconxihuan"></i> <span>喜欢</span> {{course.likeVol}}</button>
-      </el-row>
+      <!--<el-row style="margin: 20px; text-align: right;">-->
+        <!--<button class="like-btn"><i class="icon iconfont iconxihuan"></i> <span>喜欢</span> {{course.likeVol}}</button>-->
+      <!--</el-row>-->
     </div>
 
     <div class="aside-hidden" v-if="!mobile">

@@ -16,6 +16,10 @@
           </van-tab>
         </van-tabs>
       </div>
+
+      <div class="load-more">
+        <el-button type="primary" :loading="loading" style="width: 100%" @click="loadMore()">加载更多</el-button>
+      </div>
     </div>
 
     <div class="aside-hidden" v-if="!mobile">
@@ -62,7 +66,8 @@ export default {
       articleList: [], // 文章列表
       auhtorList: [], // 作者专栏
       linkList: [], // 友情链接
-      clientWidth: null
+      clientWidth: null,
+      loading: false
     }
   },
 
@@ -109,6 +114,19 @@ export default {
           this.linkList = data.data.resultObject
         }
       )
+    },
+
+    // 加载更多
+    loadMore () {
+      this.loading = true
+      // this.http.get('/v3/article/2').then(() => {
+      //       this.loading = false
+      //    this.articleList = this.articleList.concat(data.data.resultObject.map(art => {
+      //      art.href = `/article/${art.artId}`
+      //      art.releaseDate = moment(art.releaseDate).format('YYYY-MM-DD')
+      //      return art
+      //    })
+      // })
     }
   },
 
@@ -170,6 +188,9 @@ export default {
       padding-bottom: 20px;
       border-bottom: 1px solid #cccccc;
     }
+  }
+  .load-more {
+    padding: 10px;
   }
 }
 </style>

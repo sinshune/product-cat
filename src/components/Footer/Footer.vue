@@ -44,7 +44,7 @@ export default {
       footerList: [
         { label: '首页', href: '/home', icon: 'iconshouye' },
         { label: '文章', href: '/article', icon: 'iconwenzhang' },
-        { label: '收藏', href: '/collect', icon: 'iconshoucang' },
+        // { label: '收藏', href: '/collect', icon: 'iconshoucang' },
         { label: '我的', href: '/person-center', icon: 'iconwode1' }
       ]
     }

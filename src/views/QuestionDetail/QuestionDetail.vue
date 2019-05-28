@@ -12,15 +12,15 @@
           <span>发布于{{question.releaseDate}}</span>
           <span>阅读 {{question.readVol}}</span>
           <span>评论 {{question.commentVol}}</span>
-          <span>喜欢 {{question.likeVol}}</span>
+          <!--<span>喜欢 {{question.likeVol}}</span>-->
         </div>
         <p class="question-survey">{{question.survey}}</p>
         <p class="art-content" v-html="question.artContent"></p>
       </div>
 
-      <el-row style="margin: 20px; text-align: right;">
-        <button class="like-btn"><i class="icon iconfont iconxihuan"></i> <span>喜欢</span> {{question.likeVol}}</button>
-      </el-row>
+      <!--<el-row style="margin: 20px; text-align: right;">-->
+        <!--<button class="like-btn"><i class="icon iconfont iconxihuan"></i> <span>喜欢</span> {{question.likeVol}}</button>-->
+      <!--</el-row>-->
 
       <el-row>
         <div class="comment-vol">{{question.commentVol}} 条评论</div>
