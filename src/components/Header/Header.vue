@@ -107,7 +107,6 @@ export default {
     },
 
     onUpload () {
-      console.log('getToken(): ', getToken())
       if (getToken()) {
         const h = this.$createElement
         this.$msgbox({
@@ -142,7 +141,13 @@ export default {
           })
         })
       } else {
-        this.$router.replace({path: '/login-reg'})
+        this.$confirm('上传文件需要登录,是否跳转至登录界面?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$router.replace({path: '/login-reg'})
+        })
       }
     },
 
