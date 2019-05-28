@@ -121,15 +121,13 @@ export default {
           }).then((res) => {
             console.log('res: ', res)
             if (!res.error) {
-              this.$store.commit('setUserInfo', {
-                ...res.resultObject
-              })
               if (this.loginForm.isRemember) {
                 setCookie('userId', res.resultObject.userId, 7)
                 setCookie('token', res.resultObject.token, 7)
               }
-              // his.$router.push({path: '/transport/dispatch', query: {paicheNo: obj.paicheNo}})
+              this.$store.commit('setToken', res.resultObject.token)
               this.$router.replace({path: '/home'})
+              // his.$router.push({path: '/transport/dispatch', query: {paicheNo: obj.paicheNo}})
             } else {
               this.$message.error('用户名或密码错误')
             }

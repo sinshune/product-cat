@@ -48,12 +48,21 @@
       }
     }
     .avatar {
-      img {
-        margin-top: 12px;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        cursor: pointer;
+       img {
+         margin-top: 12px;
+         width: 30px;
+         height: 30px;
+         border-radius: 50%;
+         cursor: pointer;
+       }
+     }
+
+    .upload {
+      a {
+        transition: all 0.18s ease-out;
+        &:hover {
+          color: #f58220;
+        }
       }
     }
   }

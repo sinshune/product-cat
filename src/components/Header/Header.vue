@@ -18,11 +18,8 @@
       </ul>
       <!-- 登录/注册 -->
       <ul class="user-corner">
-        <li v-if="!$store.getters.userInfo"><router-link to="/login-reg">登录 | 注册</router-link></li>
-        <li class="upload">
-          <a href="javascript:;" @click="onUpload()"><i class="icon iconfont iconshangchuan"></i></a>
-        </li>
-        <li class="avatar" v-if="$store.getters.userInfo">
+        <li v-if="!$store.getters.token"><router-link to="/login-reg">登录 | 注册</router-link></li>
+        <li class="avatar" v-if="$store.getters.token">
           <el-dropdown>
             <router-link to="/person-center">
               <img src="http://q.qlogo.cn/qqapp/101035033/586D9851C413A9C0F6EFAA7525B09A6A/100">
@@ -33,6 +30,9 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
+        </li>
+        <li class="upload">
+          <a href="javascript:;" @click="onUpload()"><i class="icon iconfont iconshangchuan"></i></a>
         </li>
         <li><router-link to="/publish-article" class="publish">投稿</router-link></li>
       </ul>
@@ -73,6 +73,7 @@
 
 <script>
 import 'vuex'
+import { getToken } from '../../utils/auth'
 import Upload from '@/components/Upload/Upload'
 
 export default {
@@ -106,43 +107,49 @@ export default {
     },
 
     onUpload () {
-      const h = this.$createElement
-      this.$msgbox({
-        title: '上传文件',
-        message: h('Upload', {
-          props: {
-            uploadForm: this.uploadForm
-          }
-        }, Upload),
-        showCancelButton: true,
-        showConfirmButton: true,
-        confirmButtonText: '保存',
-        cancelButtonText: '取消',
-        beforeClose: (action, instance, done) => {
-          if (action === 'confirm') {
-            instance.confirmButtonLoading = true
-            instance.confirmButtonText = '执行中...'
-            setTimeout(() => {
-              done()
+      console.log('getToken(): ', getToken())
+      if (getToken()) {
+        const h = this.$createElement
+        this.$msgbox({
+          title: '上传文件',
+          message: h('Upload', {
+            props: {
+              uploadForm: this.uploadForm
+            }
+          }, Upload),
+          showCancelButton: true,
+          showConfirmButton: true,
+          confirmButtonText: '保存',
+          cancelButtonText: '取消',
+          beforeClose: (action, instance, done) => {
+            if (action === 'confirm') {
+              instance.confirmButtonLoading = true
+              instance.confirmButtonText = '执行中...'
               setTimeout(() => {
-                instance.confirmButtonLoading = false
-              }, 300)
-            }, 3000)
-          } else {
-            done()
+                done()
+                setTimeout(() => {
+                  instance.confirmButtonLoading = false
+                }, 300)
+              }, 3000)
+            } else {
+              done()
+            }
           }
-        }
-      }).then(action => {
-        this.$message({
-          type: 'info',
-          message: 'action: ' + action
+        }).then(action => {
+          this.$message({
+            type: 'info',
+            message: 'action: ' + action
+          })
         })
-      })
+      } else {
+        this.$router.replace({path: '/login-reg'})
+      }
     },
 
     loginOut () {
-      this.$store.commit('removeUserInfo')
-      console.log(this.$store.getters.userInfo)
+      this.$store.commit('removeToken')
+      this.$router.replace({path: '/login-reg'})
+      // console.log(this.$store.getters.userInfo)
     }
   },
 
