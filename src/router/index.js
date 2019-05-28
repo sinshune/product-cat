@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { getToken } from '../utils/auth'
 import Home from '@/views/Home/Home'
 import LoginAndReg from '@/views/LoginAndReg/LoginAndReg'
 // import ForgetPwd from '@/views/LoginAndReg/ForgetPwd/ForgetPwd'
@@ -18,7 +19,9 @@ import AboutUs from '@/views/AboutUs/AboutUs'
 
 Vue.use(Router)
 
-export default new Router({
+const vm = new Vue()
+
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -82,7 +85,10 @@ export default new Router({
     {
       path: '/publish-article',
       name: 'PublishArticle',
-      component: PublishArticle
+      component: PublishArticle,
+      beforeRouteEnter: () => {
+        router.replace('/login-reg')
+      }
     },
     {
       path: '/download',
@@ -101,3 +107,24 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const whiteList = [ 'Home', 'LoginAndReg', 'Article', 'ArticleDetail', 'Question', 'QuestionDetail', 'WebsiteNav', 'Course', 'CourseDetail', 'Download', 'AboutUs' ]
+  if (whiteList.includes(to.name)) {
+    next()
+  } else {
+    if (getToken()) {
+      next()
+    } else {
+      vm.$confirm('是否跳转至登录界面?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        router.replace({path: '/login-reg'})
+      })
+    }
+  }
+})
+
+export default router

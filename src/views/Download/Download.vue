@@ -91,8 +91,6 @@ export default {
       _.tip = this.getTip(getFileType(_.href))
       return _
     })
-
-    console.log('mark1: ', this.materialList)
   },
 
   components: {
