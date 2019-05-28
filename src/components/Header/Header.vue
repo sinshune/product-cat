@@ -18,14 +18,21 @@
       </ul>
       <!-- 登录/注册 -->
       <ul class="user-corner">
-        <li><router-link to="/login-reg">登录 | 注册</router-link></li>
+        <li v-if="!$store.getters.userInfo"><router-link to="/login-reg">登录 | 注册</router-link></li>
         <li class="upload">
           <a href="javascript:;" @click="onUpload()"><i class="icon iconfont iconshangchuan"></i></a>
         </li>
-        <li class="avatar">
-          <router-link to="/person-center">
-            <img src="http://q.qlogo.cn/qqapp/101035033/586D9851C413A9C0F6EFAA7525B09A6A/100">
-          </router-link>
+        <li class="avatar" v-if="$store.getters.userInfo">
+          <el-dropdown>
+            <router-link to="/person-center">
+              <img src="http://q.qlogo.cn/qqapp/101035033/586D9851C413A9C0F6EFAA7525B09A6A/100">
+            </router-link>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item >
+                <a @click="loginOut()">退出</a>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </li>
         <li><router-link to="/publish-article" class="publish">投稿</router-link></li>
       </ul>
@@ -131,6 +138,11 @@ export default {
           message: 'action: ' + action
         })
       })
+    },
+
+    loginOut () {
+      this.$store.commit('removeUserInfo')
+      console.log(this.$store.getters.userInfo)
     }
   },
 

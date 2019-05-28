@@ -11,7 +11,7 @@ request.interceptors.request.use(function (config) {
 export default {
   post (url, data) {
     return request({
-      baseURL: 'http://192.168.43.186:80/',
+      baseURL: 'http://localhost:80/',
       method: 'post',
       url,
       data,

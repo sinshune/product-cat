@@ -1,13 +1,14 @@
-let ActivePageIndex = 'ActivePageIndex'
-let Token = 'Token'
+let Token = 'token'
 let UserInfo = 'userInfo'
+let UserId = 'UserId'
 
 export function setUserInfo (userInfo) {
-  return sessionStorage.setItem(UserInfo, JSON.stringify(userInfo))
+  const { userId, token } = userInfo
+  sessionStorage.setItem(Token, token)
+  sessionStorage.setItem(UserId, userId)
 }
 
 export function getUserInfo () {
-  // console.log(sessionStorage.getItem(UserInfo))
   try {
     return JSON.parse(sessionStorage.getItem(UserInfo))
   } catch (err) {
@@ -15,12 +16,12 @@ export function getUserInfo () {
   }
 }
 
-export function removeUserInfo () {
-  return sessionStorage.removeItem(UserInfo)
+export function setUserId (userId) {
+  return sessionStorage.setItem(UserId, userId)
 }
 
-export function setActivePage (index) {
-  return sessionStorage.setItem(ActivePageIndex, index)
+export function getUserId () {
+  return sessionStorage.getItem(UserId)
 }
 
 export function setToken (token) {
@@ -31,10 +32,9 @@ export function getToken () {
   return sessionStorage.getItem(Token)
 }
 
+export function removeUserInfo () {
+  return sessionStorage.removeItem(UserInfo)
+}
 export function removeToken () {
   return sessionStorage.removeItem(Token)
-}
-
-export function getActivePage () {
-  return sessionStorage.getItem(ActivePageIndex)
 }

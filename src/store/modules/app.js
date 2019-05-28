@@ -2,17 +2,12 @@ import { isMobile } from '@/utils/utils.js'
 
 const app = {
   state: {
-    mobile: isMobile()
+    mobile: isMobile(),
+    isLogin: false
   },
   mutations: {
-    showPlaySortMore: (state, data) => {
-      state.PlaySortMore = data
-    },
-    resetBetFilterData: (state) => {
-      state.BetFilterDataFlag = !state.BetFilterDataFlag
-    },
-    setHeaderTitle: (state, data) => {
-      state.headerTitle = data
+    setLogin: (state, data) => {
+      state.isLogin = data
     }
   },
   actions: {}

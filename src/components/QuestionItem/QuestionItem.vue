@@ -61,7 +61,6 @@ export default {
   },
 
   mounted () {
-    console.log('mark: ', this.$store.state.user.userInfo)
   }
 }
 </script>

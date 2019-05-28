@@ -53,7 +53,9 @@
 
 <script>
 import { checkUsername, checkPassword, checkPhone } from '../../utils/validate'
+import { setCookie } from '../../utils/utils'
 import http from '@/utils/request'
+
 export default {
   name: 'LoginAndReg',
 
@@ -108,17 +110,30 @@ export default {
     }
   },
   mounted () {
-    http.post('v3/user/register', {}).then(res => {
-      console.log(res)
-    })
   },
   methods: {
     onLogin (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('调登录接口 ')
-        } else {
-          console.log('valid: ', valid)
+          http.post('/v3/user/login', {
+            username: this.loginForm.username,
+            password: this.loginForm.password
+          }).then((res) => {
+            console.log('res: ', res)
+            if (!res.error) {
+              this.$store.commit('setUserInfo', {
+                ...res.resultObject
+              })
+              if (this.loginForm.isRemember) {
+                setCookie('userId', res.resultObject.userId, 7)
+                setCookie('token', res.resultObject.token, 7)
+              }
+              // his.$router.push({path: '/transport/dispatch', query: {paicheNo: obj.paicheNo}})
+              this.$router.replace({path: '/home'})
+            } else {
+              this.$message.error('用户名或密码错误')
+            }
+          })
         }
       })
     },
@@ -126,8 +141,21 @@ export default {
     onReg (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('调注册接口')
-        } else {
+          delete this.regForm.isAgree
+          delete this.regForm.password2
+          http.post('/v3/user/register', {
+            ...this.regForm
+          }).then(res => {
+            if (res.error) {
+              this.$message.error(res.message.join('；'))
+            } else {
+              this.$message({
+                message: '注册成功',
+                type: 'success'
+              })
+              this.$router.replace('/login-reg')
+            }
+          })
         }
       })
     }
