@@ -1,4 +1,5 @@
 import { isEmpty } from './utils'
+import http from '@/utils/request'
 
 const partten = {
   password: /^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*]+$)(?![a-zA-z\d]+$)(?![a-zA-z!@#$%^&*]+$)(?![\d!.@#$%^&*]+$)[a-zA-Z\d!@#$%^&*]+$/,
@@ -10,6 +11,34 @@ export function checkUsername (rule, value, callback) {
     return callback(new Error('用户名不能为空'))
   } else {
     callback()
+  }
+}
+
+export function checkRepeatUsername (rule, value, callback) {
+  if (!isEmpty(value)) {
+    http.get(`v3/user/check?checkField=username&checkValue=${value}`).then(
+      res => {
+        if (res.resultObject.isPass) {
+          callback()
+        } else {
+          return callback(new Error('此用户已存在'))
+        }
+      }
+    )
+  }
+}
+
+export function checkRepeatPhone (rule, value, callback) {
+  if (!isEmpty(value)) {
+    http.get(`v3/user/check?checkField=phone&checkValue=${value}`).then(
+      res => {
+        if (res.resultObject.isPass) {
+          callback()
+        } else {
+          return callback(new Error('电话号码已被注册'))
+        }
+      }
+    )
   }
 }
 

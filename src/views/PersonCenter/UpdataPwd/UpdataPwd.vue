@@ -10,9 +10,9 @@
       <div slot="cardTitle">修改密码</div>
       <div slot="cardContent" style="width: 300px;">
         <el-form :model="updataPwdForm" ref="updataPwdForm" :rules="updataPwdRules" label-width="70px">
-          <el-form-item label="原密码" prop="oldPassword">
-            <el-input type="password" v-model="updataPwdForm.oldPassword" placeholder="请输入原密码" minlength="6" maxlength="16"/>
-          </el-form-item>
+          <!--<el-form-item label="原密码" prop="oldPassword">-->
+            <!--<el-input type="password" v-model="updataPwdForm.oldPassword" placeholder="请输入原密码" minlength="6" maxlength="16"/>-->
+          <!--</el-form-item>-->
           <el-form-item label="新密码" prop="newPassword">
             <el-input type="password" v-model="updataPwdForm.newPassword" placeholder="请输入新密码" minlength="6" maxlength="16"/>
           </el-form-item>
@@ -20,7 +20,7 @@
             <el-input type="password" v-model="updataPwdForm.newPassword2" placeholder="请再次输入密码" minlength="6" maxlength="16"/>
           </el-form-item>
           <el-row>
-            <el-button type="primary" style="margin-left: 70px">保存修改</el-button>
+            <el-button type="primary" style="margin-left: 70px" @click="saveNewPwd('updataPwdForm')">保存修改</el-button>
           </el-row>
         </el-form>
       </div>
@@ -32,6 +32,8 @@
 import Card from '@/components/Card/Card'
 import { isEmpty } from '../../../utils/utils'
 import { checkPassword } from '../../../utils/validate'
+import http from '@/utils/request'
+import { getUserId } from '../../../utils/auth'
 
 export default {
   name: 'UpdataPwd',
@@ -64,7 +66,7 @@ export default {
     }
     return {
       updataPwdForm: {
-        oldPassword: '',
+        // oldPassword: '',
         newPassword: '',
         newPassword2: ''
       },
@@ -83,7 +85,26 @@ export default {
   },
 
   methods: {
-
+    // 保存新密码
+    saveNewPwd (formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          http.post('/v3/save/newPassword', {
+            userId: getUserId(),
+            password: this.updataPwdForm.newPassword
+          }).then(
+            res => {
+              console.log('res: ', res)
+              if (!res.error) {
+                this.$refs[formName].resetFields()
+                this.$store.commit('removeToken')
+                this.$router.replace('/login-reg')
+              }
+            }
+          )
+        }
+      })
+    }
   },
 
   components: {
