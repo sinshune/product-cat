@@ -23,6 +23,7 @@
 <script>
 import ArticleItem from '@/components/ArticleItem/ArticleItem'
 import moment from 'moment'
+import http from '@/utils/request'
 
 export default {
   name: 'Article',
@@ -35,9 +36,10 @@ export default {
 
   methods: {
     // 通过"类别"获取文章列表
-    getArticleList (category) {
-      this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/article-list').then(
+    getArticleList (category = '') {
+      http.get('/v3/get/articleList').then(
         (data) => {
+          console.log('data: ', data)
           this.articleList = data.data.resultObject.map(art => {
             art.href = `/article/${art.artId}`
             art.releaseDate = moment(art.releaseDate).format('YYYY-MM-DD')

@@ -26,5 +26,21 @@ export default {
     }).catch(err => {
       console.log('err', err)
     })
+  },
+  get (url, data) {
+    return request({
+      baseURL: baseURL,
+      method: 'get',
+      url,
+      data,
+      timeout: 10000,
+      headers: {
+        'token': getToken()
+      }
+    }).then(res => {
+      return res.data
+    }).catch(err => {
+      console.log('err', err)
+    })
   }
 }
