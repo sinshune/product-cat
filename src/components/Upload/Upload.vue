@@ -13,7 +13,7 @@
         <el-input v-model="uploadForm.desc" placeholder="请对素材进行简单的描述" maxlength="20"/>
       </el-form-item>
       <el-form-item label="素材封面" prop="cover">
-        <el-upload action="https://jsonplaceholder.typicode.com/posts/"
+        <el-upload action="/product-cat/img/cover"
                    :show-file-list="false">
           <img v-if="uploadForm.cover" :src="uploadForm.cover" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>

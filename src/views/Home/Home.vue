@@ -131,8 +131,6 @@ export default {
   },
 
   mounted () {
-    this.http.get('product-cat/v3/calcReadVol/4734')
-
     this.getRankList()
 
     this.getArticleList('industryDynamics')

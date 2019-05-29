@@ -8,10 +8,12 @@ request.interceptors.request.use(function (config) {
   // 对请求错误做些什么
   return Promise.reject(error)
 })
+
+const baseURL = 'http://localhost:80/'
 export default {
   post (url, data) {
     return request({
-      baseURL: 'http://localhost:80/',
+      baseURL: baseURL,
       method: 'post',
       url,
       data,

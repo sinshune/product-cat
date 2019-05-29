@@ -1,4 +1,13 @@
-import {getUserInfo, setUserInfo, removeUserInfo, getUserId, getToken, removeToken, setToken} from '../../utils/auth'
+import {
+  getUserInfo,
+  setUserInfo,
+  removeUserInfo,
+  getUserId,
+  getToken,
+  removeToken,
+  setToken,
+  setUserId
+} from '../../utils/auth'
 
 const user = {
   state: {
@@ -27,6 +36,9 @@ const user = {
     removeToken: (state) => {
       removeToken()
       state.token = ''
+    },
+    setUserId: (state, data) => {
+      setUserId(data)
     }
   },
   actions: {

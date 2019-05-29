@@ -5,7 +5,7 @@
 
 <template>
   <div class="my-home">
-    <el-tabs type="card" v-model="defaultTab" @tab-click="handleClick">
+    <el-tabs type="card" v-model="defaultTab">
       <el-tab-pane v-for="tab in tabs"
                    :key="tab.name"
                    :label="tab.label"

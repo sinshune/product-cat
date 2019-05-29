@@ -125,6 +125,7 @@ export default {
                 setCookie('userId', res.resultObject.userId, 7)
                 setCookie('token', res.resultObject.token, 7)
               }
+              this.$store.commit('setUserId', res.resultObject.userId)
               this.$store.commit('setToken', res.resultObject.token)
               this.$router.replace({path: '/home'})
               // his.$router.push({path: '/transport/dispatch', query: {paicheNo: obj.paicheNo}})

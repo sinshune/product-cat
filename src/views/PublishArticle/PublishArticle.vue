@@ -24,10 +24,12 @@
         </el-select>
       </el-form-item>
       <el-form-item label="上传封面">
-        <el-upload action="https://jsonplaceholder.typicode.com/posts/"
-                   :file-list="fileList"
-                   list-type="picture"
-                   :on-change="onFileListChange()">
+        <el-upload ref="uploadCover"
+                   action=""
+                   :on-change="onFileListChange"
+                   :multiple="false" :limit="1"
+                   :file-list="coverPath"
+                   :auto-upload="false">
           <el-button size="small" type="primary">点击上传</el-button>
           <div slot="tip" class="el-upload__tip">建议尺寸：640像素 * 400像素</div>
         </el-upload>
@@ -56,12 +58,15 @@
 
 <script>
 import { checkArticleTitle, checkArticleNot } from '../../utils/validate'
+import http from '@/utils/request'
+import { getUserId } from '../../utils/auth'
 
 export default {
   name: 'PublishArticle',
 
   data () {
     return {
+      coverPath: [],
       categoryList: [
         {label: '行业动态', value: 'industryDynamics'},
         {label: 'Axure学习', value: 'axureStudy'},
@@ -89,7 +94,6 @@ export default {
           { required: true, message: '请选择文章分类' }
         ]
       },
-      fileList: [],
       instructions: [
         '关于文章：只要是和互联网产品相关的原创文章，不管是专业的干货、逗趣的吐槽还是犀利的观点，我们都将喜大普奔地迎接，包括：产品、运营、交互、用户体验、文档、工具、创业、经验总结、项目总结等类型的分享与指导，谢绝一切形式的软文、公关稿、新闻稿，一经发现，立即删除！',
         '尊重版权：请务必使用原创稿件进行投稿，我们也接受代替朋友或者公司领导投稿，但请记得注明原作者哦！',
@@ -104,15 +108,30 @@ export default {
 
   methods: {
     onFileListChange (file, fileList) {
+      console.log(file, fileList)
+      this.coverPath = fileList
     },
 
     onSubmit (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('调提交审核的接口')
-          console.log(this.articleForm)
-        } else {
-          alert('表单校验没通过')
+          let formData = new FormData()
+          // formData.append('token', getToken())
+          var myDate = new Date()
+          formData.append('userId', getUserId())
+          formData.append('title', this.articleForm.title)
+          formData.append('note', this.articleForm.note)
+          formData.append('category', this.articleForm.category)
+          formData.append('summary', this.articleForm.summary)
+          console.log(this.coverPath)
+          formData.append('cover', this.coverPath[0] ? this.coverPath[0].raw : '')
+          formData.append('releaseDate', myDate.getTime())
+          let config = {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+          http.post('/v3/save/article', formData, config).then(rst => console.log('rst: ', rst))
         }
       })
     }
