@@ -25,7 +25,6 @@ export function keepDecimal (num, digit) {
  * @param expires, 单位 为天
  */
 export function setCookie (key, value, expires = 0) {
-  debugger
   var cdata = key + '=' + value
   var myDate = new Date()
   myDate.setTime(myDate.getTime() + expires * 24 * 60 * 60 * 1000)
@@ -39,7 +38,7 @@ export function setCookie (key, value, expires = 0) {
 export function getCookie (key) {
   if (!key || document.cookie.indexOf(key) === -1) return false
 
-  let temp = document.cookie.split(';').map(_ => {
+  let temp = document.cookie.split('; ').map(_ => {
     let t = _.split('=')
     let o = {}
     o[t[0]] = t[1]
@@ -51,7 +50,7 @@ export function getCookie (key) {
 }
 
 export function removeCookie (key) {
-  this.setCookie(key, '', -1)
+  setCookie(key, '', -1)
 }
 
 export function getFileType (filename) {

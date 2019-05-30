@@ -16,6 +16,7 @@ import CourseDetail from '@/views/CourseDetail/CourseDetail'
 import Download from '@/views/Download/Download'
 import PersonCenter from '@/views/PersonCenter/PersonCenter'
 import AboutUs from '@/views/AboutUs/AboutUs'
+import { getCookie } from '../utils/utils'
 
 Vue.use(Router)
 
@@ -113,7 +114,7 @@ router.beforeEach((to, from, next) => {
   if (whiteList.includes(to.name)) {
     next()
   } else {
-    if (getToken()) {
+    if (getToken() || getCookie('token') || getCookie('userId')) {
       next()
     } else {
       vm.$confirm('是否跳转至登录界面?', '提示', {

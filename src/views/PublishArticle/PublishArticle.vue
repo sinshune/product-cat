@@ -116,14 +116,12 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           let formData = new FormData()
-          // formData.append('token', getToken())
           var myDate = new Date()
           formData.append('userId', getUserId())
           formData.append('title', this.articleForm.title)
           formData.append('note', this.articleForm.note)
           formData.append('category', this.articleForm.category)
           formData.append('summary', this.articleForm.summary)
-          console.log(this.coverPath)
           formData.append('cover', this.coverPath[0] ? this.coverPath[0].raw : '')
           formData.append('releaseDate', myDate.getTime())
           let config = {

@@ -11,11 +11,13 @@
       <div slot="cardContent">
         <el-form :model="myInfoForm" ref="myInfoForm" :rules="myInfoRules" label-width="70px">
           <el-form-item label="头像" prop="avatar" class="avatar-label">
-            <el-upload class="avatar-uploader"
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                       :show-file-list="false">
+            <el-upload action=""
+                       :on-change="onAvatarChange"
+                       :multiple="false" :limit="1"
+                       :file-list="avatarList"
+                       :auto-upload="false">
               <img v-if="myInfoForm.avatar" :src="myInfoForm.avatar" class="avatar">
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              <el-button>上传头像</el-button>
               <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
           </el-form-item>
@@ -27,8 +29,8 @@
               <el-input v-model="myInfoForm.name" placeholder="您的真实姓名" maxlength="8"/>
             </el-form-item>
             <el-form-item label="性别" prop="gender">
-              <el-radio v-model="myInfoForm.gender" label="0"/>男
-              <el-radio v-model="myInfoForm.gender" label="1"/>女
+              <el-radio v-model="myInfoForm.gender" label="0">男</el-radio>
+              <el-radio v-model="myInfoForm.gender" label="1">女</el-radio>
             </el-form-item>
             <el-form-item label="手机号" prop="phone">
               <el-input v-model="myInfoForm.phone" placeholder="请输入正确的手机号" minlength="11" maxlength="11"/>
@@ -43,7 +45,7 @@
               <el-input type="textarea" v-model="myInfoForm.intro" placeholder="您的产品感悟或一句话介绍" rows="3"/>
             </el-form-item>
             <el-row>
-              <el-button type="primary" style="margin-left: 70px" @click="saveModify()">保存修改</el-button>
+              <el-button type="primary" style="margin-left: 70px" @click="saveModify('myInfoForm')">保存修改</el-button>
             </el-row>
           </div>
         </el-form>
@@ -55,6 +57,8 @@
 <script>
 import Card from '@/components/Card/Card'
 import { checkUsername, checkPhone } from '../../../utils/validate'
+import http from '@/utils/request'
+import { getUserId } from '../../../utils/auth'
 
 export default {
   name: 'MyInfo',
@@ -79,12 +83,40 @@ export default {
         phone: [
           { validator: checkPhone, trigger: 'blur' }
         ]
-      }
+      },
+      avatarList: []
     }
   },
 
   methods: {
-    saveModify () {}
+    // 当上传的头像发生变化时
+    onAvatarChange (file, fileList) {
+      this.avatarList = fileList
+    },
+
+    saveModify (formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          const config = {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+          let formData = new FormData()
+          formData.append('userId', getUserId())
+          formData.append('avatar', this.avatarList[0] ? this.avatarList[0].raw : '')
+          formData.append('username', this.myInfoForm.username)
+          formData.append('name', this.myInfoForm.name)
+          formData.append('gender', this.myInfoForm.gender)
+          formData.append('phone', this.myInfoForm.phone)
+          formData.append('company', this.myInfoForm.company)
+          formData.append('position', this.myInfoForm.position)
+          formData.append('intro', this.myInfoForm.intro)
+
+          http.post('/v3/modify/userInfo', formData, config).then(rst => console.log('rst: ', rst))
+        }
+      })
+    }
   },
 
   mounted () {

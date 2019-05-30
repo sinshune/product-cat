@@ -70,8 +70,8 @@
 </template>
 
 <script>
-import http from '@/utils/request'
 import { getUserId } from '../../../utils/auth'
+import http from '@/utils/request'
 
 export default {
   name: 'MyHome',

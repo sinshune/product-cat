@@ -18,8 +18,8 @@
       </ul>
       <!-- 登录/注册 -->
       <ul class="user-corner">
-        <li v-if="!$store.getters.token"><router-link to="/login-reg">登录 | 注册</router-link></li>
-        <li class="avatar" v-if="$store.getters.token">
+        <li v-if="!$store.getters.token && !getThisCookie('userId') && !getThisCookie('token')"><router-link to="/login-reg">登录 | 注册</router-link></li>
+        <li class="avatar" v-if="$store.getters.token || getThisCookie('userId') || getThisCookie('token')">
           <el-dropdown>
             <router-link to="/person-center">
               <img src="http://q.qlogo.cn/qqapp/101035033/586D9851C413A9C0F6EFAA7525B09A6A/100">
@@ -73,8 +73,10 @@
 
 <script>
 import 'vuex'
-import { getToken } from '../../utils/auth'
+import { getToken, getUserId } from '../../utils/auth'
 import Upload from '@/components/Upload/Upload'
+import http from '@/utils/request'
+import { getCookie, removeCookie } from '../../utils/utils'
 
 export default {
   name: 'Header',
@@ -97,7 +99,9 @@ export default {
         desc: '',
         cover: '',
         content: ''
-      }
+      },
+      coverList: [],
+      materialList: []
     }
   },
 
@@ -109,11 +113,22 @@ export default {
     onUpload () {
       if (getToken()) {
         const h = this.$createElement
+        const _this = this
         this.$msgbox({
           title: '上传文件',
           message: h('Upload', {
             props: {
-              uploadForm: this.uploadForm
+              uploadForm: this.uploadForm,
+              coverList: this.coverList,
+              materialList: this.materialList
+            },
+            on: {
+              changeCoverList (coverList) {
+                _this.coverList = coverList
+              },
+              changeMaterialList (materialList) {
+                _this.materialList = materialList
+              }
             }
           }, Upload),
           showCancelButton: true,
@@ -133,6 +148,22 @@ export default {
             } else {
               done()
             }
+          },
+          callback: action => {
+            let formData = new FormData()
+            var myDate = new Date()
+            formData.append('userId', getUserId())
+            formData.append('title', this.uploadForm.title)
+            formData.append('desc', this.uploadForm.desc)
+            formData.append('cover', this.coverList[0] ? this.coverList[0].raw : '')
+            formData.append('content', this.materialList[0] ? this.materialList[0].raw : '')
+            formData.append('releaseDate', myDate.getTime())
+            let config = {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            }
+            http.post('/v3/upload/material', formData, config).then(rst => console.log('rst: ', rst))
           }
         }).then(action => {
           this.$message({
@@ -153,8 +184,14 @@ export default {
 
     loginOut () {
       this.$store.commit('removeToken')
+      removeCookie('userId')
+      removeCookie('token')
       this.$router.replace({path: '/login-reg'})
       // console.log(this.$store.getters.userInfo)
+    },
+
+    getThisCookie (key) {
+      return getCookie(key)
     }
   },
 

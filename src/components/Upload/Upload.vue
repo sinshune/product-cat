@@ -13,16 +13,23 @@
         <el-input v-model="uploadForm.desc" placeholder="请对素材进行简单的描述" maxlength="20"/>
       </el-form-item>
       <el-form-item label="素材封面" prop="cover">
-        <el-upload action="/product-cat/img/cover"
-                   :show-file-list="false">
+        <el-upload ref="uploadCover"
+                   action=""
+                   :on-change="onCoverChange"
+                   :multiple="false" :limit="1"
+                   :file-list="coverList"
+                   :auto-upload="false">
           <img v-if="uploadForm.cover" :src="uploadForm.cover" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
       </el-form-item>
       <el-form-item label="素材内容" prop="content">
-        <el-upload action="https://jsonplaceholder.typicode.com/posts/"
-                   :show-file-list="false">
+        <el-upload action=""
+                   :on-change="onMaterialChange"
+                   :multiple="false" :limit="1"
+                   :file-list="materialList"
+                   :auto-upload="false">
           <img v-if="uploadForm.content" :src="uploadForm.content">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
@@ -39,6 +46,14 @@ export default {
     uploadForm: {
       type: Object,
       required: true
+    },
+    coverList: {
+      type: Array,
+      required: true
+    },
+    materialList: {
+      type: Array,
+      required: true
     }
   },
 
@@ -49,6 +64,18 @@ export default {
         //   { validator: checkOldPassword, trigger: 'blur' }
         // ]
       }
+    }
+  },
+
+  methods: {
+    onCoverChange (file, fileList) {
+      console.log('fileList: ', fileList)
+      // console.log(file, fileList)
+      this.$emit('changeCoverList', fileList)
+    },
+
+    onMaterialChange (file, fileList) {
+      this.$emit('changeMaterialList', fileList)
     }
   }
 }

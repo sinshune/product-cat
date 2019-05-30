@@ -129,8 +129,7 @@ export default {
               }
               this.$store.commit('setUserId', res.resultObject.userId)
               this.$store.commit('setToken', res.resultObject.token)
-              this.$router.replace({path: '/home'})
-              // his.$router.push({path: '/transport/dispatch', query: {paicheNo: obj.paicheNo}})
+              window.location.href = '/home'
             } else {
               this.$message.error('用户名或密码错误')
             }
