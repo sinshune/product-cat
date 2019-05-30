@@ -8,6 +8,7 @@ import {
   setToken,
   setUserId
 } from '../../utils/auth'
+import {removeCookie, setCookie} from '../../utils/utils'
 
 const user = {
   state: {
@@ -39,6 +40,18 @@ const user = {
     },
     setUserId: (state, data) => {
       setUserId(data)
+    },
+    setCookieUserId: (state, data) => {
+      setCookie('userId', data)
+    },
+    removeCookieUserId: (state, data) => {
+      removeCookie('userId')
+    },
+    setCookieToken: (state, data) => {
+      setCookie('token', data)
+    },
+    removeCookieToken: (state, data) => {
+      removeCookie('token')
     }
   },
   actions: {

@@ -10,9 +10,9 @@
       <div slot="cardTitle">修改密码</div>
       <div slot="cardContent" style="width: 300px;">
         <el-form :model="updataPwdForm" ref="updataPwdForm" :rules="updataPwdRules" label-width="70px">
-          <!--<el-form-item label="原密码" prop="oldPassword">-->
-            <!--<el-input type="password" v-model="updataPwdForm.oldPassword" placeholder="请输入原密码" minlength="6" maxlength="16"/>-->
-          <!--</el-form-item>-->
+          <el-form-item label="原密码" prop="oldPassword">
+            <el-input type="password" v-model="updataPwdForm.oldPassword" placeholder="请输入原密码" minlength="6" maxlength="16"/>
+          </el-form-item>
           <el-form-item label="新密码" prop="newPassword">
             <el-input type="password" v-model="updataPwdForm.newPassword" placeholder="请输入新密码" minlength="6" maxlength="16"/>
           </el-form-item>
@@ -30,7 +30,7 @@
 
 <script>
 import Card from '@/components/Card/Card'
-import { isEmpty } from '../../../utils/utils'
+import { isEmpty, removeCookie } from '../../../utils/utils'
 import { checkPassword } from '../../../utils/validate'
 import http from '@/utils/request'
 import { getUserId } from '../../../utils/auth'
@@ -43,13 +43,15 @@ export default {
       if (isEmpty(value)) {
         return callback(new Error('请输入登录密码'))
       } else {
-        this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/person-info').then(
+        http.post('/v3/check/oldPwd', {
+          userId: getUserId(),
+          password: value
+        }).then(
           (data) => {
-            let rst = data.data.resultObject
-            if (value !== rst.password) {
-              return callback(new Error('密码错误，请重新输入'))
+            if (data.resultObject) {
+              callback()
             } else {
-              return callback()
+              return callback(new Error('密码错误，请重新输入'))
             }
           }
         )
@@ -66,7 +68,7 @@ export default {
     }
     return {
       updataPwdForm: {
-        // oldPassword: '',
+        oldPassword: '',
         newPassword: '',
         newPassword2: ''
       },
@@ -98,6 +100,8 @@ export default {
               if (!res.error) {
                 this.$refs[formName].resetFields()
                 this.$store.commit('removeToken')
+                removeCookie('userId')
+                removeCookie('token')
                 this.$router.replace('/login-reg')
               }
             }
