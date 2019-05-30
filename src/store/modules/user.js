@@ -15,7 +15,8 @@ const user = {
     // userInfo: ''
     userInfo: getUserInfo(),
     userId: getUserId(),
-    token: getToken()
+    token: getToken(),
+    // cookieUserId:
   },
   mutations: {
     setUserInfo: (state, data) => {
@@ -42,13 +43,13 @@ const user = {
       setUserId(data)
     },
     setCookieUserId: (state, data) => {
-      setCookie('userId', data)
+      setCookie('userId', data, 7)
     },
     removeCookieUserId: (state, data) => {
       removeCookie('userId')
     },
     setCookieToken: (state, data) => {
-      setCookie('token', data)
+      setCookie('token', data, 7)
     },
     removeCookieToken: (state, data) => {
       removeCookie('token')

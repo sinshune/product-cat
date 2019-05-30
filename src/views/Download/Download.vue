@@ -6,11 +6,11 @@
 <template>
   <div class="download">
     <div class="banner">
-      <div class="search">
-        <el-input slot="prepend" v-model="searchKeyword" minlength="6" maxlength="16">
-          <el-button slot="append" icon="el-icon-search"></el-button>
-        </el-input>
-      </div>
+      <!--<div class="search">-->
+        <!--<el-input slot="prepend" v-model="searchKeyword" minlength="6" maxlength="16">-->
+          <!--<el-button slot="append" icon="el-icon-search"></el-button>-->
+        <!--</el-input>-->
+      <!--</div>-->
     </div>
 
     <div class="download-container">

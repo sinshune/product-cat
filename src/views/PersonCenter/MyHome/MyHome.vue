@@ -51,11 +51,11 @@
             <el-table-column prop="releaseDate" label="发布日期" width="180"></el-table-column>
             <el-table-column prop="readVol" label="阅读量"></el-table-column>
             <el-table-column prop="commentVol" label="评论量"></el-table-column>
-            <el-table-column prop="isCheck" label="状态">
-              <template slot-scope="scope">
-                {{scope.row.isCheck == 0 ? '审核中' : scoped.row.isCheck == 1 ? '已发布' : '审核失败'}}
-              </template>
-            </el-table-column>
+            <!--<el-table-column prop="isCheck" label="状态">-->
+              <!--<template slot-scope="scope">-->
+                <!--{{scope.row.isCheck == 0 ? '审核中' : scoped.row.isCheck == 1 ? '已发布' : '审核失败'}}-->
+              <!--</template>-->
+            <!--</el-table-column>-->
             <el-table-column fixed="right" label="操作" width="100">
               <template slot-scope="scope">
                 <el-button @click="delArticle(scope.row.artId)" type="text" size="small">删除</el-button>
@@ -84,7 +84,8 @@ export default {
         { label: '我上传的素材', name: 'material' }
       ],
       articleList: [],
-      materialList: []
+      materialList: [],
+      isCheck: 1
     }
   },
 
@@ -94,10 +95,9 @@ export default {
     },
 
     // 获取"我发表的文章"
-    getArticleList () {
-      http.get(`/v3/get/articleList`, {
-        userId: getUserId()
-      }).then(res => {
+    getArticleList (param) {
+      const { isCheck } = param
+      http.get(`/v3/get/articleList?userId=${getUserId()}&isCheck=${isCheck}`).then(res => {
         console.log('我发表的文章列表: ', res.resultObject.articleList)
         this.articleList = res.resultObject.articleList
       })
@@ -116,6 +116,13 @@ export default {
     // 切换tab
     onSwitchTab (tab, evt) {
       console.log(tab.name)
+      if (tab.name === 'article') {
+        this.getArticleList({
+          isCheck: this.isCheck
+        })
+      } else if (tab.name === 'material') {
+        // this.getMaterialList()
+      }
     },
 
     // 通过状态过滤我的文章
@@ -125,8 +132,10 @@ export default {
   },
 
   mounted () {
-    this.getArticleList()
-    this.getMaterialList()
+    this.getArticleList({
+      isCheck: this.isCheck
+    })
+    // this.getMaterialList()
   }
 }
 </script>
