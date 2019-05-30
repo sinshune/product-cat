@@ -186,8 +186,7 @@ export default {
       this.$store.commit('removeToken')
       removeCookie('userId')
       removeCookie('token')
-      this.$router.replace({path: '/login-reg'})
-      // console.log(this.$store.getters.userInfo)
+      window.location.href = '/#/login-reg'
     },
 
     getThisCookie (key) {
