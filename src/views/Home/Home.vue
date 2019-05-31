@@ -8,13 +8,13 @@
       <Carousel :imgList="imgList"></Carousel>
 
       <div class="article-list-container" :style="{width: mobile ? clientWidth : '860px'}">
-        <van-tabs>
-          <van-tab v-for="(tab, index) of articleTabs" :key="index" :title="tab.title">
+        <el-tabs v-model="defaultTab" @tab-click="onSwitchTab">
+          <el-tab-pane v-for="(tab, index) of articleTabs" :key="index" :label="tab.title" :name="tab.category">
             <div class="article-item-wrapper" v-for="article of articleList" :key="article.artId">
               <ArticleItem :article="article"/>
             </div>
-          </van-tab>
-        </van-tabs>
+          </el-tab-pane>
+        </el-tabs>
       </div>
 
       <div class="load-more">
@@ -44,6 +44,7 @@ import FriendshipLink from '@/components/FriendshipLink/FriendshipLink'
 import { mapGetters } from 'vuex'
 import { keepDecimal } from './../../utils/utils'
 import moment from 'moment'
+import http from '@/utils/request'
 
 export default {
   name: 'Home',
@@ -55,6 +56,7 @@ export default {
         { src: require('@/assets/imgs/Carousel/155426715535138224-860x220.jpg'), href: 'http://www.baidu.com' },
         { src: require('@/assets/imgs/Carousel/155426722604888208-860x220.jpg'), href: 'http://www.baidu.com' }
       ],
+      defaultTab: 'industryDynamics',
       articleTabs: [
         {title: '行业动态', category: 'industryDynamics'},
         {title: 'Axure学习', category: 'axureStudy'},
@@ -87,11 +89,12 @@ export default {
 
     // 通过"类别"获取文章列表
     getArticleList (category) {
-      this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/article-list').then(
-        (data) => {
-          this.articleList = data.data.resultObject.map(art => {
+      http.get(`/v3/get/articleList?isCheck=1&category=${category}`).then(
+        res => {
+          this.articleList = res.resultObject.articleList.map(art => {
             art.href = `/article/${art.artId}`
             art.releaseDate = moment(art.releaseDate).format('YYYY-MM-DD')
+            art.cover = `http://localhost:80/${art.cover}`
             return art
           })
         }
@@ -127,6 +130,10 @@ export default {
       //      return art
       //    })
       // })
+    },
+
+    onSwitchTab (tab) {
+      this.getArticleList(tab.name)
     }
   },
 

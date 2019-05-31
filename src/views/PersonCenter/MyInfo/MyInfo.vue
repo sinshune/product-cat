@@ -107,11 +107,13 @@ export default {
           formData.append('avatar', this.avatarList[0] ? this.avatarList[0].raw : '')
           formData.append('username', this.myInfoForm.username)
           formData.append('name', this.myInfoForm.name)
-          formData.append('gender', this.myInfoForm.gender)
           formData.append('phone', this.myInfoForm.phone)
           formData.append('company', this.myInfoForm.company)
           formData.append('position', this.myInfoForm.position)
           formData.append('intro', this.myInfoForm.intro)
+          if (this.myInfoForm.gender) {
+            formData.append('gender', this.myInfoForm.gender)
+          }
 
           http.post('/v3/modify/userInfo', formData, config).then(rst => console.log('rst: ', rst))
         }

@@ -9,7 +9,7 @@
       <tbody>
         <tr>
           <td class="item-answer">
-            <span>{{question.answerVol}}</span><br>
+            <span>{{question.commentVol}}</span><br>
             <span>回答</span>
           </td>
           <td class="item-read">
@@ -20,9 +20,9 @@
             <router-link :to="{path: `/question/${question.id}`}">{{question.title}}</router-link>
             <div>
               <span class="avatar">
-                <img :src="userInfo.avatar">
+                <img :src="question.avatar">
               </span>
-              <span class="username">{{userInfo.username}}</span>
+              <span class="username">{{question.username}}</span>
               <span>{{question.releaseDate}}</span>
             </div>
           </td>
@@ -40,10 +40,6 @@ export default {
 
   data () {
     return {
-      userInfo: {
-        username: '',
-        avavtor: ''
-      }
     }
   },
 

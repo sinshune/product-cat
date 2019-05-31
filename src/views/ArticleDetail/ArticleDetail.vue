@@ -14,7 +14,7 @@
           <span>评论 {{article.commentVol}}</span>
           <!--<span>喜欢 {{article.likeVol}}</span>-->
         </div>
-        <p class="article-survey">{{article.survey}}</p>
+        <p class="article-survey">{{article.summary}}</p>
         <p class="art-content" v-html="article.artContent"></p>
       </div>
 
@@ -44,19 +44,21 @@
 
 <script>
 import { keepDecimal } from '../../utils/utils'
-import moment from 'moment'
+// import moment from 'moment'
 import { mapGetters } from 'vuex'
 import RankList from '@/components/RankList/RankList'
 import AuthorColumn from '@/components/AuthorColumn/AuthorColumn'
 import Comment from '@/components/Comment/Comment'
 import CommentItem from '@/components/CommentItem/CommentItem'
 import SubComment from '@/components/SubComment/SubComment'
+import http from '@/utils/request'
 
 export default {
   name: 'ArticleDetail',
 
   data () {
     return {
+      artId: null,
       article: {},
       rankList: [], // 排行榜
       auhtorList: [], // 作者专栏
@@ -177,19 +179,6 @@ export default {
   },
 
   methods: {
-    // 获取文章详情
-    getArticleDetail (artId) {
-      this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/article-detail').then(
-        data => {
-          let rst = data.data.resultObject
-          rst.releaseDate = moment(rst.releaseDate).format('YYYY-MM-DD')
-          this.article = rst
-        }
-      )
-    },
-
-    // 获取当前用户收藏的文章Id
-
     // 获取当前文章的评论
 
     // 获取排行榜信息
@@ -220,9 +209,13 @@ export default {
   },
 
   mounted () {
+    this.artId = this.$router.currentRoute.params.artId
+    http.get(`/v3/get/artDetail?artId=${this.artId}`).then(res => {
+      this.article = res.resultObject
+      console.log('res: ', res)
+    })
     this.getRankList()
     this.getAuthorList()
-    this.getArticleDetail('artId')
   },
 
   components: {

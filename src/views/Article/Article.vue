@@ -36,15 +36,17 @@ export default {
 
   methods: {
     // 通过"类别"获取文章列表
-    getArticleList (category = '') {
-      http.get('/v3/get/articleList').then(
+    getArticleList () {
+      http.get(`/v3/get/articleList?isCheck=1`).then(
         (data) => {
-          console.log('data: ', data)
-          this.articleList = data.data.resultObject.map(art => {
+          this.articleList = data.resultObject.articleList.map(art => {
             art.href = `/article/${art.artId}`
+            art.avatar = `http://localhost:80/${art.avatar}`
+            art.cover = `http://localhost:80/${art.cover}`
             art.releaseDate = moment(art.releaseDate).format('YYYY-MM-DD')
             return art
           })
+          console.log('artList: ', this.articleList)
         }
       )
     }

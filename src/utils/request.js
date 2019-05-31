@@ -42,5 +42,21 @@ export default {
     }).catch(err => {
       console.log('err', err)
     })
+  },
+  delete (url, data) {
+    return request({
+      baseURL: baseURL,
+      method: 'delete',
+      url,
+      data,
+      timeout: 10000,
+      headers: {
+        'token': getToken()
+      }
+    }).then(res => {
+      return res.data
+    }).catch(err => {
+      console.log('err', err)
+    })
   }
 }

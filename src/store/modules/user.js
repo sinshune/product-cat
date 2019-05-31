@@ -15,7 +15,7 @@ const user = {
     // userInfo: ''
     userInfo: getUserInfo(),
     userId: getUserId(),
-    token: getToken(),
+    token: getToken()
     // cookieUserId:
   },
   mutations: {

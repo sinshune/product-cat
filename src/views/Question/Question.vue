@@ -14,6 +14,7 @@
 
 <script>
 import moment from 'moment'
+import http from '@/utils/request'
 import QuestionItem from '@/components/QuestionItem/QuestionItem'
 
 export default {
@@ -21,27 +22,28 @@ export default {
 
   data () {
     return {
-      questionList: [
-        {
-          id: 24355,
-          title: '问题1',
-          answerVol: 18,
-          readVol: 1235,
-          releaseDate: moment(1558935991449).format('YYYY-MM-DD')
-        },
-        {
-          id: 24356,
-          title: '问题2',
-          answerVol: 23,
-          readVol: 4334,
-          releaseDate: moment(1558935991449).format('YYYY-MM-DD')
-        }
-      ]
+      questionList: []
     }
   },
 
   components: {
     QuestionItem
+  },
+
+  methods: {
+  },
+
+  mounted () {
+    http.get(`/v3/get/articleList?isCheck=1&category=question`).then(
+      res => {
+        this.questionList = res.resultObject.articleList.map(art => {
+          art.href = `/article/${art.artId}`
+          art.avatar = `localhost${art.avatar}`
+          art.releaseDate = moment(art.releaseDate).format('YYYY-MM-DD')
+          return art
+        })
+      }
+    )
   }
 }
 </script>

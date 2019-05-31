@@ -22,20 +22,11 @@
             <el-table-column prop="releaseDate" label="发布日期" width="180"></el-table-column>
             <el-table-column prop="readVol" label="阅读量"></el-table-column>
             <el-table-column prop="commentVol" label="评论量"></el-table-column>
-            <el-table-column prop="isCheck"
-                             label="状态"
-                             :filters="[{ text: '审核中', value: 0 }, { text: '已发布', value: 1 }, { text: '审核失败', value: 2 }]"
-                             :filter-method="filterArtState"
-                             filter-placement="bottom-end"
-            >
-              <template slot-scope="scope">
-                {{scope.row.isCheck == 0 ? '审核中' : scoped.row.isCheck == 1 ? '已发布' : '审核失败'}}
-              </template>
-            </el-table-column>
             <el-table-column fixed="right" label="操作" width="100">
               <template slot-scope="scope">
+                <el-button @click="getArtDetail(scope.row.artId)" type="text" size="small">详情</el-button>
                 <el-button @click="delArticle(scope.row.artId)" type="text" size="small">删除</el-button>
-                <el-button type="text" size="small">修改</el-button>
+                <!--<el-button type="text" size="small">修改</el-button>-->
               </template>
             </el-table-column>
           </el-table>
@@ -92,33 +83,27 @@ export default {
   methods: {
     delArticle (artId) {
       console.log('artId: ', artId)
-    },
-
-    // 获取"我发表的文章"
-    getArticleList (param) {
-      const { isCheck } = param
-      http.get(`/v3/get/articleList?userId=${getUserId()}&isCheck=${isCheck}`).then(res => {
-        console.log('我发表的文章列表: ', res.resultObject.articleList)
-        this.articleList = res.resultObject.articleList
+      http.delete(`/v3/delete/${artId}`).then(res => {
+        // 获取 我发表的文章 列表
+        http.get(`/v3/get/articleList?userId=${getUserId()}&isCheck=0`).then(res => {
+          console.log('res: ', res)
+          this.articleList = res.resultObject.articleList
+        })
       })
     },
 
-    // 获取"我上传的素材"
-    getMaterialList () {
-      http.get(`/v3/get/materialList`, {
-        userId: getUserId()
-      }).then(res => {
-        console.log('我上传的素材列表: ', res.resultObject.articleList)
-        this.articleList = res.resultObject.articleList
-      })
+    getArtDetail (artId) {
+      this.$router.push(`/article/${artId}`)
     },
 
     // 切换tab
     onSwitchTab (tab, evt) {
       console.log(tab.name)
       if (tab.name === 'article') {
-        this.getArticleList({
-          isCheck: this.isCheck
+        // 获取 我发表的文章 列表
+        http.get(`/v3/get/articleList?userId=${getUserId()}&isCheck=0`).then(res => {
+          console.log('res: ', res)
+          this.articleList = res.resultObject.articleList
         })
       } else if (tab.name === 'material') {
         // this.getMaterialList()
@@ -132,10 +117,16 @@ export default {
   },
 
   mounted () {
-    this.getArticleList({
-      isCheck: this.isCheck
+    // 获取 我发表的文章 列表
+    // fixmin
+    // http.get(`/v3/get/articleList?userId=${getUserId()}&isCheck=1`).then(res => {
+    http.get(`/v3/get/articleList?userId=${this.$store.getters.userId}&isCheck=0`).then(res => {
+      console.log('res: ', res)
+      this.articleList = res.resultObject.articleList
     })
-    // this.getMaterialList()
+
+    // 获取 我上传的素材  列表
+    http.get(`/v3/getMaterialList?userId=${this.$store.getters.userId}&isCheck=1`)
   }
 }
 </script>
