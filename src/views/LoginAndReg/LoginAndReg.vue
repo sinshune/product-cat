@@ -126,9 +126,13 @@ export default {
               if (this.loginForm.isRemember) {
                 setCookie('userId', res.resultObject.userId, 7)
                 setCookie('token', res.resultObject.token, 7)
+                setCookie('username', res.resultObject.username, 7)
+                setCookie('avatar', `http://localhost:80/${res.resultObject.avatar}`, 7)
               }
               this.$store.commit('setUserId', res.resultObject.userId)
               this.$store.commit('setToken', res.resultObject.token)
+              this.$store.commit('setUsername', res.resultObject.username)
+              this.$store.commit('setAvatar', `http://localhost:80/${res.resultObject.avatar}`)
               window.location.href = '/cat'
               // this.$router.replace({path: '/home'})
               // his.$router.push({path: '/transport/dispatch', query: {paicheNo: obj.paicheNo}})

@@ -17,13 +17,13 @@
             <span>阅读</span>
           </td>
           <td class="item-title">
-            <router-link :to="{path: `/question/${question.id}`}">{{question.title}}</router-link>
+            <router-link :to="{path: `/question/${question.artId}`}">{{question.title}}</router-link>
             <div>
               <span class="avatar">
-                <img :src="question.avatar">
+                <img :src="question.avatar" style="width: 30px; height: 30px; border-radius: 50%">
               </span>
-              <span class="username">{{question.username}}</span>
-              <span>{{question.releaseDate}}</span>
+              <span class="username" style="display: inline-block; height: 30px; line-height: 30px;">{{question.username}}</span>
+              <span style="display: inline-block; height: 30px; line-height: 30px; margin-left: 18px;">{{question.releaseDate}}</span>
             </div>
           </td>
         </tr>

@@ -14,7 +14,7 @@
           <span>评论 {{question.commentVol}}</span>
           <!--<span>喜欢 {{question.likeVol}}</span>-->
         </div>
-        <p class="question-survey">{{question.survey}}</p>
+        <p class="question-survey" v-if="question.summary">{{question.summary}}</p>
         <p class="art-content" v-html="question.artContent"></p>
       </div>
 
@@ -51,6 +51,7 @@ import AuthorColumn from '@/components/AuthorColumn/AuthorColumn'
 import Comment from '@/components/Comment/Comment'
 import CommentItem from '@/components/CommentItem/CommentItem'
 import SubComment from '@/components/SubComment/SubComment'
+import http from '@/utils/request'
 
 export default {
   name: 'questionDetail',
@@ -177,17 +178,6 @@ export default {
   },
 
   methods: {
-    // 获取文章详情
-    getquestionDetail (artId) {
-      this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/question-detail').then(
-        data => {
-          let rst = data.data.resultObject
-          rst.releaseDate = moment(rst.releaseDate).format('YYYY-MM-DD')
-          this.question = rst
-        }
-      )
-    },
-
     // 获取当前用户收藏的文章Id
 
     // 获取当前文章的评论
@@ -222,7 +212,13 @@ export default {
   mounted () {
     this.getRankList()
     this.getAuthorList()
-    this.getquestionDetail('artId')
+
+    this.artId = this.$router.currentRoute.params.artId
+    http.get(`/v3/get/artDetail?artId=${this.artId}`).then(res => {
+      let rst = res.resultObject
+      rst.releaseDate = moment(rst.releaseDate).format('YYYY-MM-DD')
+      this.question = rst
+    })
   },
 
   components: {

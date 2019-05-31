@@ -38,7 +38,7 @@ export default {
       res => {
         this.questionList = res.resultObject.articleList.map(art => {
           art.href = `/article/${art.artId}`
-          art.avatar = `localhost${art.avatar}`
+          art.avatar = `http://localhost:80/${art.avatar}`
           art.releaseDate = moment(art.releaseDate).format('YYYY-MM-DD')
           return art
         })

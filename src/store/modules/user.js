@@ -6,7 +6,7 @@ import {
   getToken,
   removeToken,
   setToken,
-  setUserId
+  setUserId, setUsername, setAvatar
 } from '../../utils/auth'
 import {removeCookie, setCookie} from '../../utils/utils'
 
@@ -53,7 +53,22 @@ const user = {
     },
     removeCookieToken: (state, data) => {
       removeCookie('token')
-    }
+    },
+    setUsername: (state, data) => {
+      setUsername(data)
+    },
+    setCookieUsername: (state, data) => {
+      setCookie('username', data, 7)
+    },
+    removeCookieUsername: (state, data) => {
+      removeCookie('username')
+    },
+    setAvatar: (state, data) => {
+      setAvatar(data)
+    },
+    setCookieAvatar: (state, data) => {
+      setCookie('avatar', data)
+    },
   },
   actions: {
 

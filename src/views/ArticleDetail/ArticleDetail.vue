@@ -63,117 +63,117 @@ export default {
       rankList: [], // 排行榜
       auhtorList: [], // 作者专栏
       commentList: [
-        {
-          artId: 108363,
-          commentId: 10001,
-          userInfo: {
-            userId: 123,
-            username: '一只特立独行的咸鱼',
-            avatar: 'http://i.chanpin100.com/152022653877138648-crop-90x90'
-          },
-          commentTime: 1557282318000,
-          commentContent: '感谢作者分享',
-          commentChildren: [
-            {
-              artId: 108363,
-              parentCommentId: 10001,
-              commentId: 10002,
-              beReplyUserInfo: {
-                userId: 123,
-                username: '一只特立独行的咸鱼',
-                avatar: 'http://i.chanpin100.com/152022653877138648-crop-90x90'
-              },
-              userInfo: {
-                userId: 121,
-                username: '一只特立独行的猪',
-                avatar: 'http://i.chanpin100.com/149665234441457329-crop-90x90'
-              },
-              commentTime: 1557288836000,
-              commentContent: '我也感谢作者的分享, 谢谢作者, 谢谢楼主'
-            },
-            {
-              artId: 108363,
-              parentCommentId: 10001,
-              commentId: 10003,
-              beReplyUserInfo: {
-                userId: 123,
-                username: '一只特立独行的咸鱼',
-                avatar: 'http://i.chanpin100.com/152022653877138648-crop-90x90'
-              },
-              userInfo: {
-                userId: 127,
-                username: '路人丁',
-                avatar: 'http://i.chanpin100.com/146795713502145912'
-              },
-              commentTime: 1557292392000,
-              commentContent: '同意楼上'
-            }
-          ]
-        },
-        {
-          artId: 108363,
-          commentId: 10004,
-          userInfo: {
-            userId: 125,
-            username: '路人甲',
-            avatar: 'http://i.chanpin100.com/149694344543006289-crop-90x90'
-          },
-          commentTime: 1557285036000,
-          commentContent: '文章立意深刻, 思路清晰, 大佬之作',
-          commentChildren: [
-            {
-              artId: 108363,
-              parentCommentId: 10004,
-              commentId: 10005,
-              beReplyUserInfo: {
-                userId: 125,
-                username: '路人甲',
-                avatar: 'http://i.chanpin100.com/149694344543006289-crop-90x90'
-              },
-              userInfo: {
-                userId: 126,
-                username: '花开花落',
-                avatar: 'http://i.chanpin100.com/151482189378657274-crop-90x90'
-              },
-              commentTime: 1557288939000,
-              commentContent: '同意楼主观点, 大佬之作'
-            },
-            {
-              artId: 108363,
-              parentCommentId: 10004,
-              commentId: 10006,
-              beReplyUserInfo: {
-                userId: 125,
-                username: '路人甲',
-                avatar: 'http://i.chanpin100.com/149694344543006289-crop-90x90'
-              },
-              userInfo: {
-                userId: 129,
-                username: '路人丙',
-                avatar: 'http://i.chanpin100.com/151482189378657274-crop-90x90'
-              },
-              commentTime: 1557298573000,
-              commentContent: '评论很到位'
-            }
-          ]
-        },
-        {
-          artId: 108363,
-          parentCommentId: 10004,
-          commentId: 10007,
-          beReplyUserInfo: {
-            userId: 125,
-            username: '路人甲',
-            avatar: 'http://i.chanpin100.com/149694344543006289-crop-90x90'
-          },
-          userInfo: {
-            userId: 130,
-            username: '我是PM',
-            avator: 'http://thirdqq.qlogo.cn/qqapp/101035033/D3CEE504C5280D3FD22A8BF7BCE0FEC0/100'
-          },
-          commentTime: 1557307399000,
-          commentContent: '一看作者就具有运营和产品思维, 值得学习, 感谢分享'
-        }
+        // {
+        //   artId: 108363,
+        //   commentId: 10001,
+        //   userInfo: {
+        //     userId: 123,
+        //     username: '一只特立独行的咸鱼',
+        //     avatar: 'http://i.chanpin100.com/152022653877138648-crop-90x90'
+        //   },
+        //   commentTime: 1557282318000,
+        //   commentContent: '感谢作者分享',
+        //   commentChildren: [
+        //     {
+        //       artId: 108363,
+        //       parentCommentId: 10001,
+        //       commentId: 10002,
+        //       beReplyUserInfo: {
+        //         userId: 123,
+        //         username: '一只特立独行的咸鱼',
+        //         avatar: 'http://i.chanpin100.com/152022653877138648-crop-90x90'
+        //       },
+        //       userInfo: {
+        //         userId: 121,
+        //         username: '一只特立独行的猪',
+        //         avatar: 'http://i.chanpin100.com/149665234441457329-crop-90x90'
+        //       },
+        //       commentTime: 1557288836000,
+        //       commentContent: '我也感谢作者的分享, 谢谢作者, 谢谢楼主'
+        //     },
+        //     {
+        //       artId: 108363,
+        //       parentCommentId: 10001,
+        //       commentId: 10003,
+        //       beReplyUserInfo: {
+        //         userId: 123,
+        //         username: '一只特立独行的咸鱼',
+        //         avatar: 'http://i.chanpin100.com/152022653877138648-crop-90x90'
+        //       },
+        //       userInfo: {
+        //         userId: 127,
+        //         username: '路人丁',
+        //         avatar: 'http://i.chanpin100.com/146795713502145912'
+        //       },
+        //       commentTime: 1557292392000,
+        //       commentContent: '同意楼上'
+        //     }
+        //   ]
+        // },
+        // {
+        //   artId: 108363,
+        //   commentId: 10004,
+        //   userInfo: {
+        //     userId: 125,
+        //     username: '路人甲',
+        //     avatar: 'http://i.chanpin100.com/149694344543006289-crop-90x90'
+        //   },
+        //   commentTime: 1557285036000,
+        //   commentContent: '文章立意深刻, 思路清晰, 大佬之作',
+        //   commentChildren: [
+        //     {
+        //       artId: 108363,
+        //       parentCommentId: 10004,
+        //       commentId: 10005,
+        //       beReplyUserInfo: {
+        //         userId: 125,
+        //         username: '路人甲',
+        //         avatar: 'http://i.chanpin100.com/149694344543006289-crop-90x90'
+        //       },
+        //       userInfo: {
+        //         userId: 126,
+        //         username: '花开花落',
+        //         avatar: 'http://i.chanpin100.com/151482189378657274-crop-90x90'
+        //       },
+        //       commentTime: 1557288939000,
+        //       commentContent: '同意楼主观点, 大佬之作'
+        //     },
+        //     {
+        //       artId: 108363,
+        //       parentCommentId: 10004,
+        //       commentId: 10006,
+        //       beReplyUserInfo: {
+        //         userId: 125,
+        //         username: '路人甲',
+        //         avatar: 'http://i.chanpin100.com/149694344543006289-crop-90x90'
+        //       },
+        //       userInfo: {
+        //         userId: 129,
+        //         username: '路人丙',
+        //         avatar: 'http://i.chanpin100.com/151482189378657274-crop-90x90'
+        //       },
+        //       commentTime: 1557298573000,
+        //       commentContent: '评论很到位'
+        //     }
+        //   ]
+        // },
+        // {
+        //   artId: 108363,
+        //   parentCommentId: 10004,
+        //   commentId: 10007,
+        //   beReplyUserInfo: {
+        //     userId: 125,
+        //     username: '路人甲',
+        //     avatar: 'http://i.chanpin100.com/149694344543006289-crop-90x90'
+        //   },
+        //   userInfo: {
+        //     userId: 130,
+        //     username: '我是PM',
+        //     avator: 'http://thirdqq.qlogo.cn/qqapp/101035033/D3CEE504C5280D3FD22A8BF7BCE0FEC0/100'
+        //   },
+        //   commentTime: 1557307399000,
+        //   commentContent: '一看作者就具有运营和产品思维, 值得学习, 感谢分享'
+        // }
       ]
     }
   },

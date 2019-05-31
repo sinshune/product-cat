@@ -111,7 +111,7 @@ export default {
     },
 
     onUpload () {
-      if (getToken()) {
+      if (getToken() || getCookie('token') || getCookie('userId')) {
         const h = this.$createElement
         const _this = this
         this.$msgbox({
