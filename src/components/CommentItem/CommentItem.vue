@@ -21,7 +21,7 @@
     </el-row>
 
     <el-row v-if="isCommentShow" style="padding-left: 70px;">
-      <Comment :placeholder="placeholder"/>
+      <Comment :placeholder="placeholder" :parentCommentId="comment.commentId" :byReplyUserId="comment.userInfo.userId"/>
     </el-row>
   </div>
 </template>
@@ -30,15 +30,13 @@
 import Comment from '@/components/Comment/Comment'
 import subComment from '@/components/SubComment/SubComment'
 import { getCookie } from '../../utils/utils'
+import { getUsername } from '../../utils/auth'
 
 export default {
   name: 'CommentItem',
 
   data () {
     return {
-      // 当前登录用户信息
-      userId: '1001',
-      username: '一只特立独行的猪',
       isCommentShow: false,
 
       placeholder: ''
@@ -54,6 +52,7 @@ export default {
 
   methods: {
     onReply (evt) {
+      console.log('mark: ', this.comment.commentId, this.comment.userInfo.userId)
       // 当前登录用户回复评论用户
       this.placeholder = `${this.username} 回复 ${this.$refs.user.dataset.username}`
       if (!this.isCommentShow) {
@@ -64,7 +63,7 @@ export default {
     },
 
     onSubReply (username, userid) {
-      this.placeholder = `${this.username} 回复 ${username}`
+      this.placeholder = `${this.$store.getters.username || getUsername()} 回复 ${username}`
       if (!this.isCommentShow) {
         this.isCommentShow = !this.isCommentShow
       } else {

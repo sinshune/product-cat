@@ -9,7 +9,7 @@
       <el-input type="textarea" rows="4" :placeholder="placeholder" v-model="commentContent"/>
       <div class="save-comment">
         <span class="user-info">
-          <img src="http://i.chanpin100.com/155703824062867147-crop-90x90" alt="">
+          <img :src="avatar" alt="">
           <a href="">{{username || '一只特立独行的猪'}}</a>
         </span>
         <el-button type="primary" class="publish-btn" @click="onPublish()">发表</el-button>
@@ -20,13 +20,17 @@
 
 <script>
 import { getCookie } from '../../utils/utils'
+import { getUserId } from '../../utils/auth'
+import http from '@/utils/request'
 
 export default {
   name: 'Comment',
 
   data () {
     return {
+      artId: '',
       username: '',
+      avatar: '',
       commentContent: ''
     }
   },
@@ -35,15 +39,37 @@ export default {
     placeholder: {
       type: String,
       required: true
+    },
+    parentCommentId: {
+      type: Number,
+      required: false
+    },
+    byReplyUserId: {
+      type: Number,
+      required: false
     }
   },
 
   methods: {
     onPublish () {
+      console.log('mark1: ', this.parentCommentId, this.byReplyUserId)
       if (!this.commentContent) {
         this.$message({
           message: '评论内容不能为空哦',
           type: 'warning'
+        })
+      } else {
+        let myDate = new Date()
+        http.post('/v3/save/comment', {
+          artId: this.artId,
+          parentCommentId: this.parentCommentId,
+          byReplyUserId: this.byReplyUserId,
+          userId: getUserId() || getCookie('userId'),
+          commentTime: myDate.getTime(),
+          commentContent: this.commentContent
+        }).then(res => {
+          this.commentContent = ''
+          console.log('res: ', res)
         })
       }
     }
@@ -51,6 +77,8 @@ export default {
 
   mounted () {
     this.username = getCookie('username')
+    this.avatar = getCookie('avatar')
+    this.artId = this.$router.currentRoute.params.artId
   }
 }
 </script>

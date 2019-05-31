@@ -52,6 +52,7 @@ import Comment from '@/components/Comment/Comment'
 import CommentItem from '@/components/CommentItem/CommentItem'
 import SubComment from '@/components/SubComment/SubComment'
 import http from '@/utils/request'
+import moment from 'moment'
 
 export default {
   name: 'ArticleDetail',
@@ -210,10 +211,26 @@ export default {
 
   mounted () {
     this.artId = this.$router.currentRoute.params.artId
+
+    // 文章详情
     http.get(`/v3/get/artDetail?artId=${this.artId}`).then(res => {
       this.article = res.resultObject
+      this.article.releaseDate = moment(this.article.releaseDate).format('YYYY-MM-DD HH:mm:ss')
       console.log('res: ', res)
     })
+
+    // 文章评论
+
+    // 获取文章评论
+    http.get(`/v3/get/comment/${this.artId}`).then(res => {
+      console.log('res: ', res)
+      this.commentList = res.resultObject.map(_ => {
+        _.userInfo.avatar = `http://localhost:80/${_.userInfo.avatar}`
+        _.commentTime = moment(_.commentTime).format('YYYY-MM-DD HH:mm:ss')
+        return _
+      })
+    })
+
     this.getRankList()
     this.getAuthorList()
   },

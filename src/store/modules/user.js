@@ -68,7 +68,7 @@ const user = {
     },
     setCookieAvatar: (state, data) => {
       setCookie('avatar', data)
-    },
+    }
   },
   actions: {
 
