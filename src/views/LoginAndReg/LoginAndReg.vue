@@ -159,7 +159,7 @@ export default {
                 message: '注册成功',
                 type: 'success'
               })
-              this.$router.replace('/login-reg')
+              this.regForm.resetFields()
             }
           })
         }

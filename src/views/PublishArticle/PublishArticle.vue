@@ -129,7 +129,9 @@ export default {
               'Content-Type': 'multipart/form-data'
             }
           }
-          http.post('/v3/save/article', formData, config).then(rst => console.log('rst: ', rst))
+          http.post('/v3/save/article', formData, config).then(rst => {
+            this.$refs[formName].resetFields()
+          })
         }
       })
     }

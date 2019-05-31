@@ -95,6 +95,7 @@ export default {
             art.href = `/article/${art.artId}`
             art.releaseDate = moment(art.releaseDate).format('YYYY-MM-DD')
             art.cover = `http://localhost:80/${art.cover}`
+            art.avatar = `http://localhost:80/${art.avatar}`
             return art
           })
         }

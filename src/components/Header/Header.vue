@@ -22,7 +22,7 @@
         <li class="avatar" v-if="$store.getters.token || getThisCookie('userId') || getThisCookie('token')">
           <el-dropdown>
             <router-link to="/person-center">
-              <img src="http://q.qlogo.cn/qqapp/101035033/586D9851C413A9C0F6EFAA7525B09A6A/100">
+              <img :src="avatar">
             </router-link>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item >
@@ -83,6 +83,7 @@ export default {
 
   data () {
     return {
+      avatar: '',
       menuContainer: [
         {label: '首页', href: '/home'},
         {label: '文章', href: '/article'},
@@ -192,6 +193,10 @@ export default {
     getThisCookie (key) {
       return getCookie(key)
     }
+  },
+
+  mounted () {
+    this.avatar = getCookie('avatar')
   },
 
   components: {

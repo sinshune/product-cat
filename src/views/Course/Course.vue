@@ -23,6 +23,7 @@
 <script>
 import ArticleItem from '@/components/ArticleItem/ArticleItem'
 import moment from 'moment'
+import http from '@/utils/request'
 
 export default {
   name: 'Course',
@@ -36,11 +37,13 @@ export default {
   methods: {
     // 获取教程列表
     getArticleList () {
-      this.http.get('https://www.easy-mock.com/mock/5cc9597af7fcb464ef62ac11/article-list').then(
+      http.get(`/v3/get/articleList?isCheck=1&category=course`).then(
         (data) => {
-          this.courseList = data.data.resultObject.map(course => {
+          this.courseList = data.resultObject.articleList.map(course => {
             course.href = `/course/${course.artId}`
             course.releaseDate = moment(course.releaseDate).format('YYYY-MM-DD')
+            course.cover = `http://localhost:80/${course.cover}`
+            course.avatar = `http://localhost:80/${course.avatar}`
             return course
           })
         }
